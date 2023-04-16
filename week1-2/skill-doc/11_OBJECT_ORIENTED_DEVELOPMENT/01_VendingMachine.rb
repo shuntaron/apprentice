@@ -1,6 +1,6 @@
 class VendingMachine
   def press_button
-    "cider"
+    'cider'
   end
 end
 
