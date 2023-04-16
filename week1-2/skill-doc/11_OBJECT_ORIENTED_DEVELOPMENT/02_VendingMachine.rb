@@ -1,6 +1,6 @@
 class VendingMachine
   def initialize(manufacturer_name)
-    @name = manufacturer_name
+    @manufacturer_name = manufacturer_name
   end
   
   def press_button
@@ -8,7 +8,7 @@ class VendingMachine
   end
   
   def press_manufacturer_name
-    @name
+    @manufacturer_name
   end
 end
 
