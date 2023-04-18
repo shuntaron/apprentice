@@ -3,14 +3,14 @@ class VendingMachine
     @manufacturer_name = manufacturer_name
   end
   
-  def press_button(drink)
+  def press_button(item)
     if @total_amount.nil?
       # 何もしない
-    elsif drink.price > @total_amount
+    elsif item.price > @total_amount
       # 何もしない
     else
-      @total_amount = @total_amount - drink.price
-      drink.name
+      @total_amount = @total_amount - item.price
+      item.name
     end
   end
   
@@ -28,15 +28,15 @@ class VendingMachine
   end
 end
 
-class Drink
+class Item
   def initialize(name)
-    drinks = {
+    items = {
       cider: 100,
       cola: 150
     }
     
     @name = name
-    @price = drinks[name.to_sym]
+    @price = items[name.to_sym]
   end
   
   def name
@@ -48,7 +48,7 @@ class Drink
   end
 end
 
-cola = Drink.new('cola')
+cola = Item.new('cola')
 vending_machine = VendingMachine.new('サントリー')
 vending_machine.deposit_coin(100)
 puts vending_machine.press_button(cola)
