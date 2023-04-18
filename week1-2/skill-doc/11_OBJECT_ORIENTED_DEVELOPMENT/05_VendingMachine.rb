@@ -76,6 +76,8 @@ class VendingMachine
 end
 
 class Item
+  attr_reader :name, :price, :temperature
+  
   def initialize(name)
     items = {
       cider: 100,
@@ -86,13 +88,6 @@ class Item
     @price = items[name.to_sym]
   end
   
-  def name
-    @name
-  end
-  
-  def price
-    @price
-  end
 end
 
 class Drink < Item
@@ -103,18 +98,6 @@ class CupCoffee < Item
     @name = 'cup coffee'
     @price = 100
     @temperature = temperature
-  end
-  
-  def name
-    @name
-  end
-  
-  def price
-    @price
-  end
-  
-  def temperature
-    @temperature
   end
 end
   
