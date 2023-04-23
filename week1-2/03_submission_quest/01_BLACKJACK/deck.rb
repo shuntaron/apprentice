@@ -11,5 +11,6 @@ class Deck
         @deck << [suit, number]
       end
     end
+    @deck.shuffle!
   end
 end
