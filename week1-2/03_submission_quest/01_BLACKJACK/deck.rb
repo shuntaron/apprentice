@@ -14,6 +14,6 @@ class Deck
   end
   
   def draw
-    @cards.pop.to_s
+    @cards.pop
   end
 end
