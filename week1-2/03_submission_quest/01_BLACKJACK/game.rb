@@ -1,14 +1,15 @@
 require_relative "deck"
+require_relative "player"
 
 class Game
   def initialize
     @deck = Deck.new
+    @player = Player.new("あなた")
   end
   
   def start
     puts "ブラックジャックを開始します"
-    @deck.cards.each do |card|
-      puts card.to_s
-    end
+    puts "#{@player.name}の引いたカードは#{@deck.cards.pop.to_s}です"
+    puts "#{@player.name}の引いたカードは#{@deck.cards.pop.to_s}です"
   end
 end

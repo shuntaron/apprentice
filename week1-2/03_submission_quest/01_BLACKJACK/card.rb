@@ -10,6 +10,6 @@ class Card
   end
   
   def to_s
-    "#{@suit}の#{@number}です"
+    "#{@suit}の#{@number}"
   end
 end
