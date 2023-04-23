@@ -38,6 +38,7 @@ class Game
       if choise == "Y"
         @player_cards << @deck.draw
         @player_cards.flatten
+        puts "#{@player.name}の引いたカードは#{@player_cards[-1].to_s}です"
       elsif choise == "N"
         break
       else
