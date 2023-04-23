@@ -9,7 +9,7 @@ class Game
   
   def start
     puts "ブラックジャックを開始します"
-    puts "#{@player.name}の引いたカードは#{@deck.cards.pop.to_s}です"
-    puts "#{@player.name}の引いたカードは#{@deck.cards.pop.to_s}です"
+    puts "#{@player.name}の引いたカードは#{@deck.draw}です"
+    puts "#{@player.name}の引いたカードは#{@deck.draw}です"
   end
 end
