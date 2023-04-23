@@ -9,6 +9,17 @@ class Card
     @number = number
   end
   
+  def score
+    return @number.to_i if @number.to_i > 0
+
+    case @number
+    when "J" then 10
+    when "Q" then 10
+    when "K" then 10
+    when "A" then 1
+    end
+  end
+  
   def to_s
     "#{@suit}の#{@number}"
   end
