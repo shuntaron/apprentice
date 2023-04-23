@@ -16,7 +16,7 @@ class Card
     when "J" then 10
     when "Q" then 10
     when "K" then 10
-    when "A" then 1
+    when "A" then 11
     end
   end
   
