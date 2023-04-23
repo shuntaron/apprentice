@@ -9,4 +9,7 @@ class Card
     @number = number
   end
   
+  def to_s
+    "#{@suit}の#{@number}です"
+  end
 end

@@ -8,7 +8,7 @@ class Game
   def start
     puts "ブラックジャックを開始します"
     @deck.cards.each do |card|
-      p card
+      puts card.to_s
     end
   end
 end
