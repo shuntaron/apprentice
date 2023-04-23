@@ -7,7 +7,7 @@ class Game
   
   def start
     puts "ブラックジャックを開始します"
-    @deck.deck.each do |card|
+    @deck.cards.each do |card|
       p card
     end
   end
