@@ -11,7 +11,7 @@ class Game
   end
   
   def start
-    puts "ブラックジャックを開始します"
+    puts "ブラックジャックを開始します。"
     # プレイヤーのドロー
     @player_cards << @deck.draw
     @player_cards << @deck.draw
@@ -23,12 +23,12 @@ class Game
     @dealer_cards.flatten
     
     # プレイヤーのカード表示
-    puts "#{@player.name}の引いたカードは#{@player_cards[0].to_s}です"
-    puts "#{@player.name}の引いたカードは#{@player_cards[1].to_s}です"
+    puts "#{@player.name}の引いたカードは#{@player_cards[0].to_s}です。"
+    puts "#{@player.name}の引いたカードは#{@player_cards[1].to_s}です。"
     
     # ディーラーのカード表示
-    puts "#{@dealer.name}の引いたカードは#{@dealer_cards[0].to_s}です"
-    puts "#{@dealer.name}の引いた2枚目のカードはわかりません"
+    puts "#{@dealer.name}の引いたカードは#{@dealer_cards[0].to_s}です。"
+    puts "#{@dealer.name}の引いた2枚目のカードはわかりません。"
     
     # プレイヤーのターン
     # 得点が21以上になるまで引き続けることができる
@@ -47,7 +47,7 @@ class Game
     end
     
     # ディーラーの2枚目のカード表示
-    puts "#{@dealer.name}の引いた2枚目のカードは#{@dealer_cards[1].to_s}でした"
+    puts "#{@dealer.name}の引いた2枚目のカードは#{@dealer_cards[1].to_s}でした。"
     
     # ディーラーのターン
     # 得点が17以上になるまで引き続ける
@@ -57,8 +57,8 @@ class Game
     end
     
     # 両者の得点表示
-    puts "#{@player.name}の現在の得点は#{@player.hand(@player_cards)}です"
-    puts "#{@dealer.name}の現在の得点は#{@dealer.hand(@dealer_cards)}です"
+    puts "#{@player.name}の現在の得点は#{@player.hand(@player_cards)}です。"
+    puts "#{@dealer.name}の現在の得点は#{@dealer.hand(@dealer_cards)}です。"
     
     if @player.hand(@player_cards) > 21
       puts "あなたの負けです！"
@@ -72,6 +72,6 @@ class Game
       puts "あなたの負けです！"
     end
     
-    puts "ブラックジャックを終了します"
+    puts "ブラックジャックを終了します。"
   end
 end
