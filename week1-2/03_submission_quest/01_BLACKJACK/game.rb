@@ -34,12 +34,12 @@ class Game
     # 得点が21以上になるまで引き続けることができる
     while @player.hand(@player_cards) < 21 do
       puts "#{@player.name}の現在の得点は#{@player.hand(@player_cards)}です。カードを引きますか？（Y/N）"
-      choise = gets.chomp.to_s
-      if choise == "Y"
+      choice = gets.chomp.to_s
+      if choice == "Y"
         @player_cards << @deck.draw
         @player_cards.flatten
         puts "#{@player.name}の引いたカードは#{@player_cards[-1].to_s}です"
-      elsif choise == "N"
+      elsif choice == "N"
         break
       else
         puts "#{@player.name}の現在の得点は#{@player.hand(@player_cards)}です。カードを引きますか？（Y/N）"
