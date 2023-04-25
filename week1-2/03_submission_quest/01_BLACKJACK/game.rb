@@ -12,6 +12,7 @@ class Game
   
   def start
     puts "ブラックジャックを開始します。"
+    
     # プレイヤーのドロー
     @player_cards << @deck.draw
     @player_cards << @deck.draw
@@ -56,10 +57,13 @@ class Game
       @dealer_cards.flatten
     end
     
-    # 両者の得点表示
-    puts "#{@player.name}の現在の得点は#{@player.hand(@player_cards)}です。"
+    # ディーラーの得点表示
     puts "#{@dealer.name}の現在の得点は#{@dealer.hand(@dealer_cards)}です。"
     
+    # プレイヤーの得点表示
+    puts "#{@player.name}の現在の得点は#{@player.hand(@player_cards)}です。"
+    
+    # 勝負の判定
     if @player.hand(@player_cards) > 21
       puts "あなたの負けです！"
     elsif @dealer.hand(@dealer_cards) > 21
