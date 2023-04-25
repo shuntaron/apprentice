@@ -50,15 +50,15 @@ class Game
     # ディーラーの2枚目のカード表示
     puts "#{@dealer.name}の引いた2枚目のカードは#{@dealer_cards[1].to_s}でした。"
     
+    # ディーラーの現在の得点表示
+    puts "#{@dealer.name}の現在の得点は#{@dealer.hand(@dealer_cards)}です。"
+    
     # ディーラーのターン
     # 得点が17以上になるまで引き続ける
     while @dealer.hand(@dealer_cards) < 17 do
       @dealer_cards << @deck.draw
       @dealer_cards.flatten
     end
-    
-    # ディーラーの得点表示
-    puts "#{@dealer.name}の現在の得点は#{@dealer.hand(@dealer_cards)}です。"
     
     # プレイヤーの得点表示
     puts "#{@player.name}の現在の得点は#{@player.hand(@player_cards)}です。"
