@@ -61,7 +61,7 @@ class Game
     end
     
     # プレイヤーの得点表示
-    puts "#{@player.name}の現在の得点は#{@player.hand(@player_cards)}です。"
+    puts "#{@player.name}の得点は#{@player.hand(@player_cards)}です。"
     
     # 勝負の判定
     if @player.hand(@player_cards) > 21
