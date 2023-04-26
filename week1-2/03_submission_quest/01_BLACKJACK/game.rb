@@ -57,6 +57,8 @@ class Game
     # 得点が17以上になるまで引き続ける
     while @dealer.hand(@dealer_cards) < 17 do
       @dealer_cards << @deck.draw
+      # ディーラーの引いたカード表示
+      puts "#{@dealer.name}の引いたカードは#{@dealer_cards[-1].to_s}です。"
       @dealer_cards.flatten
     end
     
