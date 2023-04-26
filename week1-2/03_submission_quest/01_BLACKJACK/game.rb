@@ -63,6 +63,9 @@ class Game
     # プレイヤーの得点表示
     puts "#{@player.name}の得点は#{@player.hand(@player_cards)}です。"
     
+    # ディーラーの得点表示
+    puts "#{@dealer.name}の得点は#{@dealer.hand(@dealer_cards)}です。"
+    
     # 勝負の判定
     if @player.hand(@player_cards) > 21
       puts "あなたの負けです！"
