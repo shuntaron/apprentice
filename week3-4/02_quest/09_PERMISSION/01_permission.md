@@ -13,9 +13,9 @@ $ ls -l --time-style="+" ~/READ*
 ```
 - 属性  
 
-| file type | file mode   | number of links | owner name | group name | number of bytes in the file | the pathname |
-| --------- | ----------- | --------------- | ---------- | ---------- | --------------------------- | ------------ |
-| `-`       | `rw-rw-r--` | 1               | ec2-user   | ec2-user   | 0                           | README.md    |
+| file type | file mode   | number of links | owner name | group name | number of bytes in the file | the pathname             |
+| --------- | ----------- | --------------- | ---------- | ---------- | --------------------------- | ------------------------ |
+| `-`       | `rw-rw-r--` | 1               | ec2-user   | ec2-user   | 0                           | /home/ec2-user/README.md |
 
 - ファイルモード
   - ファイルタイプ（`d`:ディレクトリ、`l`:シンボリックリンク、`-`:ファイル）  
