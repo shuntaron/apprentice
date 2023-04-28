@@ -1,14 +1,14 @@
 ## ファイル操作
 
 ### 1. ファイルの中身を出力
-```bash session
+```console
 $ cat /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost6 localhost6.localdomain6
 ```
 
 ### 2. ファイルの中身をスクロール表示
-```bash session
+```console
 $ less /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost6 localhost6.localdomain6
@@ -16,35 +16,35 @@ $ less /etc/hosts
 ```
 
 ### 3. ファイルの作成
-```bash session
+```console
 $ touch README.md
 $ ls README.md
 README.md
 ```
 
 ### 4. ファイル名の変更
-```bash session
+```console
 $ mv README.md TMP.md
 $ ls TMP.md
 TMP.md
 ```
 
 ### 5. ファイルのコピー
-```bash session
+```console
 $ cp TMP.md COPY.md
 $ ls COPY.md
 COPY.md
 ```
 
 ### 6. ファイルの削除
-```bash session
+```console
 $ rm TMP.md
 $ ls TMP.md
 ls: TMP.md にアクセスできません: No such file or directory
 ```
 
 ### 7. シンボリックリンク
-```bash session
+```console
 $ ls -l --time-style="+" READ*
 -rw-rw-r-- 1 ec2-user ec2-user 0  README.md
 lrwxrwxrwx 1 ec2-user ec2-user 9  README_SYMBOLIC.md -> README.md
@@ -54,14 +54,14 @@ Hello World
 ```
 
 ### 8. ファイルの検索
-```bash session
+```console
 $ find . -maxdepth 1 -name "README*"
 ./README.md
 ./README_SYMBOLIC.md
 ```
 
 ### 9. 検索
-```bash session
+```console
 $ touch ~/sample.txt
 $ cat << EOF > sample.txt
 apple
