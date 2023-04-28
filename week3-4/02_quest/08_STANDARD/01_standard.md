@@ -19,30 +19,33 @@
 ```console
 $ ls / > ~/root.txt
 $ cat ~/root.txt
-<summary>stdout</summary>
-<details>
-bin
-boot
-dev
-etc
-home
-lib
-lib64
-local
-media
-mnt
-opt
-proc
-root
-run
-sbin
-srv
-sys
-tmp
-usr
-var
-</details>
 ```
+<details>
+<summary>stdout</summary>
+
+  ```console
+  bin
+  boot
+  dev
+  etc
+  home
+  lib
+  lib64
+  local
+  media
+  mnt
+  opt
+  proc
+  root
+  run
+  sbin
+  srv
+  sys
+  tmp
+  usr
+  var
+  ```
+</details>
 
 ### 3. エラー出力のリダイレクト
 ```console
@@ -55,31 +58,35 @@ ls: /hoge にアクセスできません: No such file or directory
 ```console
 $ ls / /hoge > ~/result.txt 2>&1
 $ cat ~/result.txt
-<details>
-ls: /hoge にアクセスできません: No such file or directory
-/:
-bin
-boot
-dev
-etc
-home
-lib
-lib64
-local
-media
-mnt
-opt
-proc
-root
-run
-sbin
-srv
-sys
-tmp
-usr
-var
-</details>
 ```
+<details>
+  <summary>stdout and stderr</summary>
+
+  ```console
+  ls: /hoge にアクセスできません: No such file or directory
+  /:
+  bin
+  boot
+  dev
+  etc
+  home
+  lib
+  lib64
+  local
+  media
+  mnt
+  opt
+  proc
+  root
+  run
+  sbin
+  srv
+  sys
+  tmp
+  usr
+  var
+  ```
+</details>
 
 ### 5. /dev/null とは
 /dev/nullとは、LinuxなどのUNIX系OSの特殊なデバイスファイルの一種で、投入された入力を単に捨て去る機能を提供するもの。  
