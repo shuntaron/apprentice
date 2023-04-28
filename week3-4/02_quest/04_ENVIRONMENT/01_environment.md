@@ -1,1 +1,21 @@
 ## Linux動作環境の用意
+- クラウドコンピューティング
+  - Amazon Web Service
+    - AWS Cloud9
+    - AWS EC2
+  - Microsoft Azure
+    - Linux Virtual Machines
+  - Google Cloud Platform
+    - Compute Engine
+- サーバ仮想化
+  - ハイパーバイザー型
+    - VMware vSphere ESX
+    - Hyper-V
+    - KVM(Kernel-based Virtual Machine)
+  - ホストOS型
+    - Virtual Box
+    - VMware Player
+    - KVM(Kernel-based Virtual Machine)
+  - コンテナ型
+    - Docker
+    - Kubernetes
