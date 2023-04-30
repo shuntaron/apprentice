@@ -4,7 +4,7 @@
 ```console
 # ローカルリポジトリの作成
 $ mkdir git_practice
-$ cd git_pracitce
+$ cd git_practice
 $ git init
 ```
 ### 2. 変更をステージに追加
