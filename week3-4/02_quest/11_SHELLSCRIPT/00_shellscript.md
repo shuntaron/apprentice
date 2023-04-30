@@ -41,29 +41,43 @@ $ cat << "EOF" > 03_calculator.sh
 > echo "Enter two numbers:"
 > read number1
 > read number2
->
+> 
 > if [[ $number1 =~ ^[0-9]+$ ]] && [[ $number2 =~ ^[0-9]+$ ]]; then
 >   :
 > else
 >   echo "The number entered is invalid."
 >   exit
 > fi
->
+> 
 > echo "Choose an arithmetic operation (+, -, *, /):"
 > read operation
->
+> 
 > case "$operation" in
->   "+" ) result=$((number1 + number2)) ;;
->   "-" ) result=$((number1 - number2)) ;;
->   "*" ) result=$((number1 * number2)) ;;
->   "/" ) result=$((number1 / number2)) ;;
->   *) echo "operation is invalid"
+>   "+" )
+>     result=$((number1 + number2))
+>     ;;
+>   "-" )
+>     result=$((number1 - number2))
+>     ;;
+>   "*" )
+>     result=$((number1 * number2))
+>     ;;
+>   "/" )
+>     if [[ $number2 -eq 0 ]]; then
+>       echo "division by zero is impossible."
+>       exit
+>     fi
+>     result=$((number1 / number2))
+>     ;;
+>   *)
+>     echo "operation is invalid"
+>     exit
+>     ;;
 > esac
->
-> if [[ -n $result ]]; then
->   echo "The result:$result"
-> fi
-> EOF
+> 
+> echo "The result:$result"
+EOF
+
 $ ls -l --time-style="+" ~/03_calculator.sh
 -rw-rw-r-- 1 ec2-user ec2-user 540  /home/ec2-user/03_calculator.sh
 $ chmod 755 ~/03_calculator.sh

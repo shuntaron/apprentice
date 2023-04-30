@@ -14,13 +14,26 @@ echo "Choose an arithmetic operation (+, -, *, /):"
 read operation
 
 case "$operation" in
-  "+" ) result=$((number1 + number2)) ;;
-  "-" ) result=$((number1 - number2)) ;;
-  "*" ) result=$((number1 * number2)) ;;
-  "/" ) result=$((number1 / number2)) ;;
-  *) echo "operation is invalid"
+  "+" )
+    result=$((number1 + number2))
+    ;;
+  "-" )
+    result=$((number1 - number2))
+    ;;
+  "*" )
+    result=$((number1 * number2))
+    ;;
+  "/" )
+    if [[ $number2 -eq 0 ]]; then
+      echo "division by zero is impossible."
+      exit
+    fi
+    result=$((number1 / number2))
+    ;;
+  *)
+    echo "operation is invalid."
+    exit
+    ;;
 esac
 
-if [[ -n $result ]]; then
-  echo "The result:$result"
-fi
+echo "The result:$result"
