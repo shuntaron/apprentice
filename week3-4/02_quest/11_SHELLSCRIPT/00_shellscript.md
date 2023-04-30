@@ -93,3 +93,20 @@ The result:21
 ```
 
 ### 4. 繰り返し処理
+```console
+$ cat << "EOF" > 04_even.sh
+> #!/bin/bash
+> for i in `seq 1 100`; do
+>   if [[ $((i % 2)) -eq 0 ]]; then
+>     echo -n "$i "
+>   fi
+> done
+> EOF
+$ ls -l --time-style="+" ~/04_even.sh
+-rw-rw-r-- 1 ec2-user ec2-user 99  /home/ec2-user/04_even.sh
+$ chmod 755 ~/04_even.sh
+$ ls -l --time-style="+" ~/04_even.sh
+-rwxr-xr-x 1 ec2-user ec2-user 99  /home/ec2-user/04_even.sh
+$ ./04_even.sh
+2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50 52 54 56 58 60 62 64 66 68 70 72 74 76 78 80 82 84 86 88 90 92 94 96 98 100
+```
