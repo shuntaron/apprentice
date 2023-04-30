@@ -35,5 +35,47 @@ Welcome! shuntaron
 ```
 
 ### 3. 条件分岐
+```console
+$ cat << "EOF" > 03_calculator.sh
+> #!/bin/bash
+> echo "Enter two numbers:"
+> read number1
+> read number2
+>
+> if [[ $number1 =~ ^[0-9]+$ ]] && [[ $number2 =~ ^[0-9]+$ ]]; then
+>   :
+> else
+>   echo "The number entered is invalid."
+>   exit
+> fi
+>
+> echo "Choose an arithmetic operation (+, -, *, /):"
+> read operation
+>
+> case "$operation" in
+>   "+" ) result=$((number1 + number2)) ;;
+>   "-" ) result=$((number1 - number2)) ;;
+>   "*" ) result=$((number1 * number2)) ;;
+>   "/" ) result=$((number1 / number2)) ;;
+>   *) echo "operation is invalid"
+> esac
+>
+> if [[ -n $result ]]; then
+>   echo "The result:$result"
+> fi
+> EOF
+$ ls -l --time-style="+" ~/03_calculator.sh
+-rw-rw-r-- 1 ec2-user ec2-user 540  /home/ec2-user/03_calculator.sh
+$ chmod 755 ~/03_calculator.sh
+$ ls -l --time-style="+" ~/03_calculator.sh
+-rwxr-xr-x 1 ec2-user ec2-user 540  /home/ec2-user/03_calculator.sh
+$ ./03_calculator.sh
+Enter two numbers:
+10
+11
+Choose an arithmetic operation (+, -, *, /):
++
+The result:21
+```
 
 ### 4. 繰り返し処理
