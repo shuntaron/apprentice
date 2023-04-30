@@ -36,7 +36,7 @@ Welcome! shuntaron
 
 ### 3. 条件分岐
 ```console
-$ cat << "EOF" > 03_calculator.sh
+$ cat << "EOF" > ~/03_calculator.sh
 > #!/bin/bash
 > echo "Enter two numbers:"
 > read number1
@@ -94,7 +94,7 @@ The result:21
 
 ### 4. 繰り返し処理
 ```console
-$ cat << "EOF" > 04_even.sh
+$ cat << "EOF" > ~/04_even.sh
 > #!/bin/bash
 > for i in `seq 1 100`; do
 >   if [[ $((i % 2)) -eq 0 ]]; then
