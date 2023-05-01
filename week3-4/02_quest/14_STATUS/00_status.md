@@ -19,8 +19,11 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 ### 2. 変更内容の確認
-````console
+```console
 $ git diff
+```
+
+````diff
 diff --git a/README.md b/README.md
 index 2cca488..f2f1160 100644
 --- a/README.md
