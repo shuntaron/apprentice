@@ -1,9 +1,9 @@
 ## 変更を元に戻すことができる
 ````console
 $ sed -i -e '$d' README.md 
+$ git diff
 ````
 ````diff
-$ git diff
 diff --git a/README.md b/README.md
 index f2f1160..2cca488 100644
 --- a/README.md
@@ -36,11 +36,13 @@ index f2f1160..2cca488 100644
  [Import code](https://github.com/shuntaron/git_practice/import)
  ```
 -hoge
+````
+```console
 $ git add README.md
 $ git diff
 $ git restore --staged README.md
 $ git diff
-````
+```
 ````diff
 diff --git a/README.md b/README.md
 index f2f1160..2cca488 100644
