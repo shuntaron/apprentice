@@ -6,7 +6,7 @@ GitHub 上に新規リポジトリを作成
 https://github.com/new
 
 ### 2. プッシュ
-```shell
+```console
 $ mkdir git_practice
 $ cd git_practice
 $ touch README.md
@@ -32,7 +32,7 @@ branch 'main' set up to track 'origin/main'.
 ```
 
 ### 3. 追加の変更をプッシュ
-```shell
+```console
 $ echo "# git_practice" >> README.md
 $ git diff
 ```
@@ -44,7 +44,7 @@ index e69de29..1b3f470 100644
 @@ -0,0 +1 @@
 +# git_practice
 ```
-```shell
+```console
 $ git add README.md
 $ git commit -m "Update README.md"
 [main 7f5bc43] Update README.md
@@ -59,7 +59,7 @@ To github-shuntaron:shuntaron/git_practice.git
 ```
 
 ### 4. クローン
-```shell
+```console
 $ git clone git@github.com:shuntaron/git_practice.git
 Cloning into 'git_practice'...
 remote: Enumerating objects: 6, done.
