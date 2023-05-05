@@ -6,8 +6,10 @@ echo "次の選択肢から入力してください(Add Password/Get Password/Ex
 # Exit を入力するまで繰り返し
 while :
 do
+  # 選択肢の入力値を変数へ格納
   read option
   
+  # 選択肢の入力値によって分岐処理
   case $option in
   
     # Add Password が入力された場合
