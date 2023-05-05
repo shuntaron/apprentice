@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# パスワード管理ファイルのファイル名を変数へ格納
+password_file=02_password.txt
+
 echo "パスワードマネージャーへようこそ！"
 echo "次の選択肢から入力してください(Add Password/Get Password/Exit)："
 
@@ -20,7 +23,7 @@ do
       read username
       echo "パスワードを入力してください："
       read -s password
-      echo "$service:$username:$password" >> 02_password.txt
+      echo "$service:$username:$password" >> $password_file
       echo "パスワードの追加は成功しました。"
       
       echo "次の選択肢から入力してください(Add Password/Get Password/Exit)："
@@ -32,7 +35,7 @@ do
       read service
       
       # パスワード管理ファイルのサービス名を部分一致でgrepし、マッチした行を変数へ格納
-      result=$(grep -E "^.*$service.*:.*:.*" 02_password.txt)
+      result=$(grep -E "^.*$service.*:.*:.*" $password_file)
       
       # サービス名が保存されていなかった場合
       if [[ -z $result ]]; then
