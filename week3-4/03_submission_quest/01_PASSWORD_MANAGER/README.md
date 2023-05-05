@@ -4,6 +4,7 @@
 - シェルスクリプトを利用して作成
 
 ### ステップ1
+<details open>
 - インプット  
 以下の情報をファイルに保存する
   - サービス名
@@ -26,7 +27,15 @@
 Thank you!
 ```
 
+- 呼び出し
+```console
+$ ./01_password_manager.sh
+```
+
+</details>
+
 ### ステップ2(advanced)
+<details open>
 - インプット  
 以下の情報をファイルに保存する
   - サービス名
@@ -70,3 +79,16 @@ Thank you!
 # Add Password/Get Password/Exit 以外が入力された場合
 入力が間違えています。Add Password/Get Password/Exit から入力してください。
 ```
+
+- 呼び出し
+```console
+$ ./02_password_manager.sh
+```
+
+</details>
+
+
+### ステップ3(advanced)
+<details open>
+
+</details>
