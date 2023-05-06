@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # パスワード管理ファイルのファイル名を変数へ格納
-password_file=02_password.txt
+password_file=03_password.txt
+encrypted_password_file=03_password.gpg
 
 echo "パスワードマネージャーへようこそ！"
 echo "次の選択肢から入力してください(Add Password/Get Password/Exit)："
@@ -23,7 +24,22 @@ do
       read username
       echo "パスワードを入力してください："
       read -s password
+      
+      # 暗号化されたパスワード管理ファイルが存在する場合
+      if [[ -f $encrypted_password_file ]]; then
+        # 暗号化されたパスワード管理ファイルを復号化
+        gpg --yes --output $password_file --decrypt $encrypted_password_file
+      fi
+      
+      # 平文パスワード管理ファイルへ情報を追記
       echo "$service:$username:$password" >> $password_file
+      
+      # 平文パスワード管理ファイルを暗号化
+      gpg --yes --output $encrypted_password_file --encrypt --recipient shuntaron $password_file
+      
+      # 平文パスワード管理ファイルを削除
+      rm -f $password_file
+      
       echo "パスワードの追加は成功しました。"
       
       echo "次の選択肢から入力してください(Add Password/Get Password/Exit)："
@@ -32,10 +48,21 @@ do
     # Get Password が入力された場合
     "Get Password" )
       echo "サービス名を入力してください："
+      
+      # 入力値を変数へ格納
       read service
       
+      # 暗号化されたパスワード管理ファイルが存在する場合
+      if [[ -f $encrypted_password_file ]]; then
+        # パスワード管理ファイルを復号化
+        gpg --yes --output $password_file --decrypt $encrypted_password_file
+      fi
+      
       # パスワード管理ファイルのサービス名を部分一致でgrepし、マッチした行を変数へ格納
-      result=$(grep -E "^.*$service.*:.*:.*" $password_file)
+      result=$(grep -E "^.*$service.*:.*:.*" $password_file 2>/dev/null)
+      
+      # 復号化した平文ファイルを削除
+      rm -f $password_file
       
       # サービス名が保存されていなかった場合
       if [[ -z $result ]]; then
