@@ -3,13 +3,8 @@
 - パスワードを管理するパスワードマネージャー
 - シェルスクリプトを利用して作成
 
-- 呼び出し
-```console
-$ ./password_manager.sh
-```
-
 ### ステップ1
-<details>
+<details open>
 
 - インプット  
 以下の情報をファイルに保存する
@@ -33,10 +28,15 @@ $ ./password_manager.sh
 Thank you!
 ```
 
+- 呼び出し
+```console
+$ ./01_password_manager.sh
+```
+
 </details>
 
 ### ステップ2(advanced)
-<details>
+<details open>
 
 - インプット  
 以下の情報をファイルに保存する
@@ -82,7 +82,13 @@ Thank you!
 入力が間違えています。Add Password/Get Password/Exit から入力してください。
 ```
 
+- 呼び出し
+```console
+$ ./02_password_manager.sh
+```
+
 </details>
+
 
 ### ステップ3(advanced)
 <details open>
@@ -97,5 +103,11 @@ Thank you!
 Add Password が入力された場合、入力された情報をファイルに保存した後にファイルを`暗号化する`  
 Get Password が入力された場合、ファイルの情報を`復号化して`内容を表示する  
 ※ファイルの情報を`復号化する`際、ファイルそのものは暗号化された状態を維持する  
+
+
+- 呼び出し
+```console
+$ ./03_password_manager.sh
+```
 
 </details>
