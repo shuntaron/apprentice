@@ -46,7 +46,7 @@ do
         OLDIFS=$IFS
         # デフォルトの区切り文字($' \t\n')を削除
         #  (後続のechoで改行を区切り文字として処理させないため)
-        unset $IFS
+        IFS=""
         
         # grepでマッチした行数分繰り返し
         echo $result | while read line
