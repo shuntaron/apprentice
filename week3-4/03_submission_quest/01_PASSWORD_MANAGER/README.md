@@ -9,7 +9,7 @@ $ ./password_manager.sh
 ```
 
 ### ステップ1
-<details open>
+<details>
 
 - インプット  
 以下の情報をファイルに保存する
@@ -31,6 +31,55 @@ $ ./password_manager.sh
 パスワードを入力してください：
 # 入力が完了したら
 Thank you!
+```
+
+</details>
+
+### ステップ2(advanced)
+<details open>
+
+- インプット  
+以下の情報をファイルに保存する
+  - サービス名
+  - ユーザー名
+  - パスワード
+
+- アウトプット  
+入力された情報は "サービス名:ユーザー名:パスワード" という形式でファイルに保存する  
+シェルスクリプトを実行するたびに入力された情報をファイルに追記する  
+
+- プロンプト表示  
+シェルスクリプトを実行すると、以下が表示される
+
+```bash
+パスワードマネージャーへようこそ！
+次の選択肢から入力してください(Add Password/Get Password/Exit)：
+
+# Add Password が入力された場合
+サービス名を入力してください：
+ユーザー名を入力してください：
+パスワードを入力してください：
+
+パスワードの追加は成功しました。
+次の選択肢から入力してください(Add Password/Get Password/Exit)：
+
+# Get Password が入力された場合
+サービス名を入力してください：
+## サービス名が保存されていなかった場合
+そのサービスは登録されていません。
+## サービス名が保存されていた場合
+サービス名：hoge
+ユーザー名：fuga
+パスワード：piyo
+
+次の選択肢から入力してください(Add Password/Get Password/Exit)：
+
+# Exit が入力された場合
+Thank you!
+## プログラムが終了
+
+# Add Password/Get Password/Exit 以外が入力された場合
+入力が間違えています。Add Password/Get Password/Exit から入力してください。
 ```
 
 </details>
