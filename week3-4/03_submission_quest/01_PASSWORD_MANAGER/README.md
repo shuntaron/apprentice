@@ -36,7 +36,7 @@ Thank you!
 </details>
 
 ### ステップ2(advanced)
-<details open>
+<details>
 
 - インプット  
 以下の情報をファイルに保存する
@@ -81,5 +81,21 @@ Thank you!
 # Add Password/Get Password/Exit 以外が入力された場合
 入力が間違えています。Add Password/Get Password/Exit から入力してください。
 ```
+
+</details>
+
+### ステップ3(advanced)
+<details open>
+
+- インプット  
+以下の情報をファイルに保存する
+  - サービス名
+  - ユーザー名
+  - パスワード
+
+- アウトプット  
+Add Password が入力された場合、入力された情報をファイルに保存した後にファイルを`暗号化する`  
+Get Password が入力された場合、ファイルの情報を`復号化して`内容を表示する  
+※ファイルの情報を`復号化する`際、ファイルそのものは暗号化された状態を維持する  
 
 </details>
