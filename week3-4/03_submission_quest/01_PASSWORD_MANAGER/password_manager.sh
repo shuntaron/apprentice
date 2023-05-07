@@ -36,7 +36,7 @@ echo "パスワードマネージャーへようこそ！"
 # 管理用パスワードの確認処理
 # 暗号文パスワードファイルが存在する場合
 if [[ -f $encrypted_password_file ]]; then
-  read -sp "管理用パスワードを入力してください。" manager_password
+  read -sp "管理用パスワードを入力してください：" manager_password
   echo ""
   # 管理用パスワードが正しいか確認
   checkcrypt
