@@ -63,7 +63,16 @@ mysql  Ver 8.0.28 for Linux on x86_64 (MySQL Community Server - GPL)
 ```
 
 ### 2. データベースへの接続
+```
+# MySQLコンテナの起動
+$ docker start mysql-container
 
+# コンテナにログイン
+$ docker exec -it mysql-container bash
+
+# MySQLへ接続
+$ mysql -u root -p
+```
 
 ### 3. データベースの作成
 
