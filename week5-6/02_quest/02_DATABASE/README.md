@@ -20,7 +20,7 @@ services:
 ```
 
 2. .envファイルへ任意の環境変数を設定
-```text
+```env
 MYSQL_ROOT_PASSWORD: ****
 MYSQL_DATABASE: ****
 ```
@@ -31,7 +31,7 @@ $ docker-compose config
 ```
 
 3. my.cnf ファイルの作成
-```ini
+```cnf
 [mysqld]
 character-set-server = utf8mb4
 collation-server = utf8mb4_bin
