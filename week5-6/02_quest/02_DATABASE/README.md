@@ -137,5 +137,7 @@ mysql> show databases;
 ```
 
 ### 7. データベースの再作成
-
-
+```sql
+mysql> CREATE DATABASE test;
+Query OK, 1 row affected (0.03 sec)
+```
