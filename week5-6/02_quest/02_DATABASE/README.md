@@ -119,7 +119,22 @@ mysql> select database();
 ```
 
 ### 6. データベースの削除
+```
+mysql> DROP DATABASE test;
+Query OK, 0 rows affected (0.06 sec)
 
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test_database      |
++--------------------+
+5 rows in set (0.00 sec)
+```
 
 ### 7. データベースの再作成
 
