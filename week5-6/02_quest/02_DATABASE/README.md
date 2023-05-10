@@ -75,7 +75,10 @@ $ mysql -u root -p
 ```
 
 ### 3. データベースの作成
-
+```sql
+mysql> CREATE DATABASE test;
+Query OK, 1 row affected (0.01 sec)
+```
 
 ### 4. データベースの表示
 
