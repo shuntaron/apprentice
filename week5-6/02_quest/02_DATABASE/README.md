@@ -98,7 +98,25 @@ mysql> show databases;
 ```
 
 ### 5. データベースの指定
+```sql
+mysql> select database();
++------------+
+| database() |
++------------+
+| NULL       |
++------------+
+1 row in set (0.00 sec)
 
+mysql> use test
+Database changed
+mysql> select database();
++------------+
+| database() |
++------------+
+| test       |
++------------+
+1 row in set (0.00 sec)
+```
 
 ### 6. データベースの削除
 
