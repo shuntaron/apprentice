@@ -81,7 +81,21 @@ Query OK, 1 row affected (0.01 sec)
 ```
 
 ### 4. データベースの表示
+```sql
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
+| test_database      |
++--------------------+
+6 rows in set (0.00 sec)
 
+```
 
 ### 5. データベースの指定
 
