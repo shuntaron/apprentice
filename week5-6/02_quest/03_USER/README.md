@@ -1,7 +1,9 @@
 ## ユーザー作成・権限付与・削除
 
 ### 1. ユーザーの作成
-
+```sql
+CREATE USER 'test'@'localhost' IDENTIFIED BY 'password';
+```
 
 ### 2. ユーザーの表示
 
