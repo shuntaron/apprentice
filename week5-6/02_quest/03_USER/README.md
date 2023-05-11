@@ -2,7 +2,8 @@
 
 ### 1. ユーザーの作成
 ```sql
-CREATE USER 'test'@'localhost' IDENTIFIED BY 'test';
+mysql> CREATE USER 'test'@'localhost' IDENTIFIED BY 'test';
+Query OK, 0 rows affected (0.02 sec)
 ```
 
 ### 2. ユーザーの表示
@@ -100,5 +101,20 @@ mysql> SELECT USER, HOST FROM mysql.user;
 ```
 
 ### 6. ユーザーの再作成
+```sql
+mysql> CREATE USER 'test'@'localhost' IDENTIFIED BY 'test';
+Query OK, 0 rows affected (0.02 sec)
 
-
+mysql> SELECT USER, HOST FROM mysql.user;
++------------------+-----------+
+| USER             | HOST      |
++------------------+-----------+
+| root             | %         |
+| mysql.infoschema | localhost |
+| mysql.session    | localhost |
+| mysql.sys        | localhost |
+| root             | localhost |
+| test             | localhost |
++------------------+-----------+
+6 rows in set (0.00 sec)
+```
