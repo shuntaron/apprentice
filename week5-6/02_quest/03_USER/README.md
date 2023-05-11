@@ -76,7 +76,10 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 ```
 
 ### 4. 権限のリロード
-
+```sql
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.04 sec)
+```
 
 ### 5. ユーザーの削除
 
