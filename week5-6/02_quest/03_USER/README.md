@@ -102,6 +102,7 @@ mysql> SELECT USER, HOST FROM mysql.user;
 
 ### 6. ユーザーの再作成
 ```sql
+-- ユーザーの作成
 mysql> CREATE USER 'test'@'localhost' IDENTIFIED BY 'test';
 Query OK, 0 rows affected (0.02 sec)
 
@@ -117,4 +118,12 @@ mysql> SELECT USER, HOST FROM mysql.user;
 | test             | localhost |
 +------------------+-----------+
 6 rows in set (0.00 sec)
+
+-- フルアクセス権限の付与
+mysql> GRANT ALL PRIVILEGES ON * . * TO 'test'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+-- 権限のリロード
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
 ```
