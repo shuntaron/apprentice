@@ -6,7 +6,20 @@ CREATE USER 'test'@'localhost' IDENTIFIED BY 'password';
 ```
 
 ### 2. ユーザーの表示
-
+```sql
+mysql> SELECT USER, HOST FROM mysql.user;
++------------------+-----------+
+| USER             | HOST      |
++------------------+-----------+
+| root             | %         |
+| mysql.infoschema | localhost |
+| mysql.session    | localhost |
+| mysql.sys        | localhost |
+| root             | localhost |
+| test             | localhost |
++------------------+-----------+
+6 rows in set (0.00 sec)
+```
 
 ### 3. ユーザーへの権限付与
 
