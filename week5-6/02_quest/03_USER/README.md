@@ -2,7 +2,7 @@
 
 ### 1. ユーザーの作成
 ```sql
-CREATE USER 'test'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'test'@'localhost' IDENTIFIED BY 'test';
 ```
 
 ### 2. ユーザーの表示
@@ -82,7 +82,22 @@ Query OK, 0 rows affected (0.04 sec)
 ```
 
 ### 5. ユーザーの削除
+```sql
+mysql> DROP USER 'test'@'localhost';
+Query OK, 0 rows affected (0.02 sec)
 
+mysql> SELECT USER, HOST FROM mysql.user;
++------------------+-----------+
+| USER             | HOST      |
++------------------+-----------+
+| root             | %         |
+| mysql.infoschema | localhost |
+| mysql.session    | localhost |
+| mysql.sys        | localhost |
+| root             | localhost |
++------------------+-----------+
+5 rows in set (0.00 sec)
+```
 
 ### 6. ユーザーの再作成
 
