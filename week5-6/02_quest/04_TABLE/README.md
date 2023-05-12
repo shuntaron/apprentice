@@ -33,7 +33,11 @@ mysql> show tables;
 ```
 
 ### 3. カラムの追加
-
+```sql
+mysql> ALTER TABLE footballers ADD age INT;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+```
 
 ### 4. カラムの表示
 
