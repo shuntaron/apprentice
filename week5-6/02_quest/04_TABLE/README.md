@@ -22,7 +22,15 @@ Query OK, 0 rows affected (0.10 sec)
 ```
 
 ### 2. テーブルの表示
-
+```sql
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| footballers    |
++----------------+
+1 row in set (0.00 sec)
+```
 
 ### 3. カラムの追加
 
