@@ -53,7 +53,20 @@ mysql> SHOW COLUMNS FROM footballers;
 ```
 
 ### 5. カラムの削除
+```sql
+mysql> ALTER TABLE footballers DROP COLUMN age;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
 
+mysql> SHOW COLUMNS FROM footballers;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+```
 
 ### 6. テーブルの削除
 
