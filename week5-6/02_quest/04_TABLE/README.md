@@ -40,7 +40,17 @@ Records: 0  Duplicates: 0  Warnings: 0
 ```
 
 ### 4. カラムの表示
-
+```sql
+mysql> SHOW COLUMNS FROM footballers;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.03 sec)
+```
 
 ### 5. カラムの削除
 
