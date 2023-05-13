@@ -45,5 +45,12 @@ mysql> SELECT * FROM footballers;
 ```
 
 ### 4. データの削除
+```sql
+DELETE FROM footballers
+-- WHERE id = 2
+;
+Query OK, 1 row affected (0.01 sec)
 
-
+mysql> SELECT * FROM footballers;
+Empty set (0.00 sec)
+```
