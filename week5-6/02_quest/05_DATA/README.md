@@ -25,7 +25,24 @@ mysql> SELECT * FROM footballers;
 ```
 
 ### 3. データの更新
+```sql
+UPDATE footballers 
+SET 
+  id = 2,
+  name = 'Cristiano Ronaldo' 
+WHERE 
+  id = 2
+;
+Rows matched: 1  Changed: 1  Warnings: 0
 
+mysql> SELECT * FROM footballers;
++------+-------------------+
+| id   | name              |
++------+-------------------+
+|    2 | Cristiano Ronaldo |
++------+-------------------+
+1 row in set (0.00 sec)
+```
 
 ### 4. データの削除
 
