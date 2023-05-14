@@ -155,4 +155,21 @@ mysql> SELECT emp_no AS employee_no FROM dept_manager;
 ```
 
 ### 5. 重複行の削除
-
+dept_manager テーブルの dept_no カラムの値を、重複を削除して取得
+```sql
+mysql> SELECT DISTINCT dept_no FROM dept_manager;
++---------+
+| dept_no |
++---------+
+| d001    |
+| d002    |
+| d003    |
+| d004    |
+| d005    |
+| d006    |
+| d007    |
+| d008    |
+| d009    |
++---------+
+9 rows in set (0.00 sec)
+```
