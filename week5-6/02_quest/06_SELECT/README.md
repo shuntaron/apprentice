@@ -1,6 +1,7 @@
 ## データ検索
 
 ### 1. 環境構築
+[MySQL 公式サンプルデータベース](https://dev.mysql.com/doc/index-other.html)の [employee data](https://github.com/datacharmer/test_db) のデータをデータベースへ格納
 ```console
 $ apt-get update
 $ apt-get install git
@@ -29,6 +30,7 @@ data_load_time_diff
 ```
 
 ### 2. 全カラムの取得
+dept_manager テーブルの全データを * を指定して取得
 ```console
 $ mysql -u test -p
 ```
