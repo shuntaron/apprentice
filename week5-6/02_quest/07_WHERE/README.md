@@ -127,7 +127,25 @@ mysql> SELECT * FROM employees WHERE birth_date BETWEEN '1960-01-01' AND '1960-0
 10 rows in set (0.00 sec)
 ```
 ### 7. かつ
-
+従業員データ(employees テーブル)のうち、ファーストネームが Mary で、かつ女性のデータを10行分取得
+```sql
+mysql> SELECT * FROM employees WHERE first_name = 'Mary' AND gender = 'F' LIMIT 10;
++--------+------------+------------+-----------+--------+------------+
+| emp_no | birth_date | first_name | last_name | gender | hire_date  |
++--------+------------+------------+-----------+--------+------------+
+|  10011 | 1953-11-07 | Mary       | Sluis     | F      | 1990-01-22 |
+|  10532 | 1959-08-31 | Mary       | Wossner   | F      | 1986-05-18 |
+|  11821 | 1954-10-18 | Mary       | Piazza    | F      | 1995-12-13 |
+|  12334 | 1962-03-08 | Mary       | Ertl      | F      | 1990-03-06 |
+|  13881 | 1956-08-14 | Mary       | Monarch   | F      | 1991-06-10 |
+|  13924 | 1955-05-23 | Mary       | DasSarma  | F      | 1991-11-05 |
+|  16021 | 1964-06-04 | Mary       | Ananiadou | F      | 1994-05-21 |
+|  23680 | 1962-07-14 | Mary       | Navazio   | F      | 1986-09-17 |
+|  26899 | 1963-12-21 | Mary       | Luders    | F      | 1987-12-03 |
+|  27747 | 1959-03-27 | Mary       | Fujisawa  | F      | 1990-09-07 |
++--------+------------+------------+-----------+--------+------------+
+10 rows in set (0.02 sec)
+```
 
 ### 8. または
 
