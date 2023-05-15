@@ -107,8 +107,25 @@ mysql> SELECT * FROM employees WHERE first_name LIKE '%vi%' LIMIT 10;
 ```
 
 ### 6. 特定の範囲の絞り込み
-
-
+従業員データ(employees テーブル)のうち、誕生日が1960年1月1日から1960年1月31日までの人のデータを10行分取得
+```sql
+mysql> SELECT * FROM employees WHERE birth_date BETWEEN '1960-01-01' AND '1960-02-01' LIMIT 10;
++--------+------------+------------+-----------+--------+------------+
+| emp_no | birth_date | first_name | last_name | gender | hire_date  |
++--------+------------+------------+-----------+--------+------------+
+|  10141 | 1960-01-17 | Shahaf     | Ishibashi | F      | 1993-05-06 |
+|  10175 | 1960-01-11 | Aleksandar | Ananiadou | F      | 1988-01-11 |
+|  10208 | 1960-01-02 | Xiping     | Klerer    | M      | 1991-12-23 |
+|  10352 | 1960-01-28 | Erzsebet   | Ohori     | M      | 1996-01-21 |
+|  10366 | 1960-01-25 | Morrie     | Piazza    | M      | 1994-04-11 |
+|  10647 | 1960-01-12 | Tesuro     | Bahk      | M      | 1995-09-28 |
+|  10893 | 1960-01-30 | Danil      | Kropatsch | M      | 1989-08-23 |
+|  11259 | 1960-01-13 | Amalendu   | Gronowski | M      | 1986-12-26 |
+|  11353 | 1960-01-30 | Utpal      | Berztiss  | M      | 1986-08-25 |
+|  11374 | 1960-01-25 | Remzi      | Matzat    | F      | 1993-12-12 |
++--------+------------+------------+-----------+--------+------------+
+10 rows in set (0.00 sec)
+```
 ### 7. かつ
 
 
