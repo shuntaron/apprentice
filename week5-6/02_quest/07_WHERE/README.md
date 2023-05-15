@@ -184,7 +184,16 @@ mysql> SELECT * FROM employees WHERE emp_no IN (10011, 10021, 10031);
 ```
 
 ### 10. 従業員番号
-
+従業員番号（emp_no）が20,000の人のファーストネームとラストネームを取得
+```sql
+mysql> SELECT emp_no, first_name, last_name FROM employees WHERE emp_no = 20000;
++--------+------------+-----------+
+| emp_no | first_name | last_name |
++--------+------------+-----------+
+|  20000 | Jenwei     | Matzke    |
++--------+------------+-----------+
+1 row in set (0.00 sec)
+```
 
 ### 11. 誕生日
 
