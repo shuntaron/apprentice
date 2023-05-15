@@ -148,7 +148,25 @@ mysql> SELECT * FROM employees WHERE first_name = 'Mary' AND gender = 'F' LIMIT 
 ```
 
 ### 8. または
-
+従業員データ(employees テーブル)のうち、ファーストネームが Mary または ラストネームが Peck の人のデータを10行分取得
+```sql
+mysql> SELECT * FROM employees WHERE first_name = 'Mary' OR last_name = 'Peck' LIMIT 10;
++--------+------------+------------+-----------+--------+------------+
+| emp_no | birth_date | first_name | last_name | gender | hire_date  |
++--------+------------+------------+-----------+--------+------------+
+|  10011 | 1953-11-07 | Mary       | Sluis     | F      | 1990-01-22 |
+|  10532 | 1959-08-31 | Mary       | Wossner   | F      | 1986-05-18 |
+|  10664 | 1962-06-02 | Xumin      | Peck      | M      | 1989-12-24 |
+|  10856 | 1964-03-13 | Sreenivas  | Peck      | F      | 1986-12-31 |
+|  11821 | 1954-10-18 | Mary       | Piazza    | F      | 1995-12-13 |
+|  12333 | 1964-05-01 | Gino       | Peck      | M      | 1990-09-20 |
+|  12334 | 1962-03-08 | Mary       | Ertl      | F      | 1990-03-06 |
+|  13562 | 1960-02-15 | Mary       | Cooley    | M      | 1986-02-24 |
+|  13881 | 1956-08-14 | Mary       | Monarch   | F      | 1991-06-10 |
+|  13924 | 1955-05-23 | Mary       | DasSarma  | F      | 1991-11-05 |
++--------+------------+------------+-----------+--------+------------+
+10 rows in set (0.01 sec)
+```
 
 ### 9. 含まれる
 
