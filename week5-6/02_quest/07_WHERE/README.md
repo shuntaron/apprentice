@@ -43,7 +43,26 @@ mysql> SELECT * FROM employees WHERE gender = 'F' LIMIT 10;
 ```
 
 ### 3. 等しくないデータの絞り込み
-
+従業員データ(employees テーブル)のうち、女性でないデータを10行分取得  
+その際、否定形の構文を使用
+```sql
+mysql> SELECT * FROM employees WHERE gender != 'F' LIMIT 10;
++--------+------------+------------+-------------+--------+------------+
+| emp_no | birth_date | first_name | last_name   | gender | hire_date  |
++--------+------------+------------+-------------+--------+------------+
+|  10001 | 1953-09-02 | Georgi     | Facello     | M      | 1986-06-26 |
+|  10003 | 1959-12-03 | Parto      | Bamford     | M      | 1986-08-28 |
+|  10004 | 1954-05-01 | Chirstian  | Koblick     | M      | 1986-12-01 |
+|  10005 | 1955-01-21 | Kyoichi    | Maliniak    | M      | 1989-09-12 |
+|  10008 | 1958-02-19 | Saniya     | Kalloufi    | M      | 1994-09-15 |
+|  10012 | 1960-10-04 | Patricio   | Bridgland   | M      | 1992-12-18 |
+|  10013 | 1963-06-07 | Eberhardt  | Terkki      | M      | 1985-10-20 |
+|  10014 | 1956-02-12 | Berni      | Genin       | M      | 1987-03-11 |
+|  10015 | 1959-08-19 | Guoxiang   | Nooteboom   | M      | 1987-07-02 |
+|  10016 | 1961-05-02 | Kazuhito   | Cappelletti | M      | 1995-01-27 |
++--------+------------+------------+-------------+--------+------------+
+10 rows in set (0.00 sec)
+```
 
 ### 4. より大きいデータの絞り込み
 
