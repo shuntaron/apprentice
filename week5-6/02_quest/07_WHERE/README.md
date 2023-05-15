@@ -3,7 +3,7 @@
 ### 1. 指定した行数のみ取得
 従業員データ(employees テーブル)を10行のみ取得
 ```sql
-mysql> SELECT * FROM employees LIMIT 10;
+SELECT * FROM employees LIMIT 10;
 +--------+------------+------------+-----------+--------+------------+
 | emp_no | birth_date | first_name | last_name | gender | hire_date  |
 +--------+------------+------------+-----------+--------+------------+
@@ -24,7 +24,9 @@ mysql> SELECT * FROM employees LIMIT 10;
 ### 2. 等しいデータの絞り込み
 従業員データ(employees テーブル)のうち、女性のデータを10行分取得
 ```sql
-mysql> SELECT * FROM employees WHERE gender = 'F' LIMIT 10;
+SELECT * FROM employees
+WHERE gender = 'F' 
+LIMIT 10;
 +--------+------------+------------+------------+--------+------------+
 | emp_no | birth_date | first_name | last_name  | gender | hire_date  |
 +--------+------------+------------+------------+--------+------------+
@@ -46,7 +48,9 @@ mysql> SELECT * FROM employees WHERE gender = 'F' LIMIT 10;
 従業員データ(employees テーブル)のうち、女性でないデータを10行分取得  
 その際、否定形の構文を使用
 ```sql
-mysql> SELECT * FROM employees WHERE gender != 'F' LIMIT 10;
+SELECT * FROM employees
+WHERE gender != 'F' 
+LIMIT 10;
 +--------+------------+------------+-------------+--------+------------+
 | emp_no | birth_date | first_name | last_name   | gender | hire_date  |
 +--------+------------+------------+-------------+--------+------------+
@@ -67,7 +71,9 @@ mysql> SELECT * FROM employees WHERE gender != 'F' LIMIT 10;
 ### 4. より大きいデータの絞り込み
 従業員データ(employees テーブル)のうち、誕生日が1960年1月1日以降の人のデータを10行分取得
 ```sql
-mysql> SELECT * FROM employees WHERE birth_date > '1960-01-01' LIMIT 10;
+SELECT * FROM employees
+WHERE birth_date > '1960-01-01'
+LIMIT 10;
 +--------+------------+------------+-------------+--------+------------+
 | emp_no | birth_date | first_name | last_name   | gender | hire_date  |
 +--------+------------+------------+-------------+--------+------------+
@@ -88,7 +94,10 @@ mysql> SELECT * FROM employees WHERE birth_date > '1960-01-01' LIMIT 10;
 ### 5. あいまいな条件の絞り込み
 従業員データ(employees テーブル)のうち、ファーストネームに vi が含まれる人のデータを10行分取得
 ```sql
-mysql> SELECT * FROM employees WHERE first_name LIKE '%vi%' LIMIT 10;
+SELECT * FROM employees
+WHERE first_name
+LIKE '%vi%'
+LIMIT 10;
 +--------+------------+------------+-----------+--------+------------+
 | emp_no | birth_date | first_name | last_name | gender | hire_date  |
 +--------+------------+------------+-----------+--------+------------+
@@ -109,7 +118,11 @@ mysql> SELECT * FROM employees WHERE first_name LIKE '%vi%' LIMIT 10;
 ### 6. 特定の範囲の絞り込み
 従業員データ(employees テーブル)のうち、誕生日が1960年1月1日から1960年1月31日までの人のデータを10行分取得
 ```sql
-mysql> SELECT * FROM employees WHERE birth_date BETWEEN '1960-01-01' AND '1960-02-01' LIMIT 10;
+SELECT * FROM employees 
+WHERE birth_date
+BETWEEN '1960-01-01'
+AND '1960-02-01'
+LIMIT 10;
 +--------+------------+------------+-----------+--------+------------+
 | emp_no | birth_date | first_name | last_name | gender | hire_date  |
 +--------+------------+------------+-----------+--------+------------+
@@ -129,7 +142,10 @@ mysql> SELECT * FROM employees WHERE birth_date BETWEEN '1960-01-01' AND '1960-0
 ### 7. かつ
 従業員データ(employees テーブル)のうち、ファーストネームが Mary で、かつ女性のデータを10行分取得
 ```sql
-mysql> SELECT * FROM employees WHERE first_name = 'Mary' AND gender = 'F' LIMIT 10;
+SELECT * FROM employees
+WHERE first_name = 'Mary'
+AND gender = 'F'
+LIMIT 10;
 +--------+------------+------------+-----------+--------+------------+
 | emp_no | birth_date | first_name | last_name | gender | hire_date  |
 +--------+------------+------------+-----------+--------+------------+
@@ -150,7 +166,10 @@ mysql> SELECT * FROM employees WHERE first_name = 'Mary' AND gender = 'F' LIMIT 
 ### 8. または
 従業員データ(employees テーブル)のうち、ファーストネームが Mary または ラストネームが Peck の人のデータを10行分取得
 ```sql
-mysql> SELECT * FROM employees WHERE first_name = 'Mary' OR last_name = 'Peck' LIMIT 10;
+SELECT * FROM employees
+WHERE first_name = 'Mary'
+OR last_name = 'Peck'
+LIMIT 10;
 +--------+------------+------------+-----------+--------+------------+
 | emp_no | birth_date | first_name | last_name | gender | hire_date  |
 +--------+------------+------------+-----------+--------+------------+
@@ -172,7 +191,9 @@ mysql> SELECT * FROM employees WHERE first_name = 'Mary' OR last_name = 'Peck' L
 従業員データ(employees テーブル)のうち、従業員番号が 10011, 10021, 10031 のいずれかに合致する人のデータを取得  
 なお、OR 演算子は使用しない
 ```sql
-mysql> SELECT * FROM employees WHERE emp_no IN (10011, 10021, 10031);
+SELECT * FROM employees
+WHERE emp_no
+IN (10011, 10021, 10031);
 +--------+------------+------------+-----------+--------+------------+
 | emp_no | birth_date | first_name | last_name | gender | hire_date  |
 +--------+------------+------------+-----------+--------+------------+
@@ -186,7 +207,8 @@ mysql> SELECT * FROM employees WHERE emp_no IN (10011, 10021, 10031);
 ### 10. 従業員番号
 従業員番号（emp_no）が20,000の人のファーストネームとラストネームを取得
 ```sql
-mysql> SELECT emp_no, first_name, last_name FROM employees WHERE emp_no = 20000;
+SELECT emp_no, first_name, last_name FROM employees
+WHERE emp_no = 20000;
 +--------+------------+-----------+
 | emp_no | first_name | last_name |
 +--------+------------+-----------+
@@ -198,7 +220,10 @@ mysql> SELECT emp_no, first_name, last_name FROM employees WHERE emp_no = 20000;
 ### 11. 誕生日
 誕生日が1959年1月の人のレコードを取得
 ```sql
-mysql> SELECT * FROM employees WHERE DATE_FORMAT(birth_date, '%Y-%m') LIKE '1959-01%' LIMIT 10;
+SELECT * FROM employees
+WHERE DATE_FORMAT(birth_date, '%Y-%m')
+LIKE '1959-01%'
+LIMIT 10;
 +--------+------------+------------+-----------+--------+------------+
 | emp_no | birth_date | first_name | last_name | gender | hire_date  |
 +--------+------------+------------+-----------+--------+------------+
