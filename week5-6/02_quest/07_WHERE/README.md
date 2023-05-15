@@ -196,5 +196,22 @@ mysql> SELECT emp_no, first_name, last_name FROM employees WHERE emp_no = 20000;
 ```
 
 ### 11. 誕生日
-
-
+誕生日が1959年1月の人のレコードを取得
+```sql
+mysql> SELECT * FROM employees WHERE DATE_FORMAT(birth_date, '%Y-%m') LIKE '1959-01%' LIMIT 10;
++--------+------------+------------+-----------+--------+------------+
+| emp_no | birth_date | first_name | last_name | gender | hire_date  |
++--------+------------+------------+-----------+--------+------------+
+|  10031 | 1959-01-27 | Karsten    | Joslin    | M      | 1991-09-01 |
+|  10146 | 1959-01-12 | Chenyi     | Syang     | M      | 1988-06-28 |
+|  10373 | 1959-01-08 | Hongzue    | Heijenga  | M      | 1997-04-26 |
+|  10479 | 1959-01-27 | Duro       | Coney     | F      | 1987-02-28 |
+|  10612 | 1959-01-01 | Gil        | Peroz     | M      | 1991-09-02 |
+|  10685 | 1959-01-14 | Zongyan    | Cusworth  | M      | 1990-04-24 |
+|  11231 | 1959-01-28 | Marit      | Narwekar  | F      | 1988-04-07 |
+|  11281 | 1959-01-14 | Vincent    | Brookner  | M      | 1988-02-03 |
+|  11462 | 1959-01-28 | Chikara    | Maginnis  | M      | 1990-04-27 |
+|  11483 | 1959-01-30 | Zine       | Mateescu  | M      | 1993-12-02 |
++--------+------------+------------+-----------+--------+------------+
+10 rows in set (0.01 sec)
+```
