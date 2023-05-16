@@ -13,7 +13,16 @@ SELECT SUM(salary) FROM salaries;
 ```
 
 ### 2. 列の平均値
-
+給与情報(salaries テーブル)から、全データの給与の平均値を取得
+```sql
+SELECT AVG(salary) FROM salaries;
++-------------+
+| AVG(salary) |
++-------------+
+|  63810.7448 |
++-------------+
+1 row in set (0.79 sec)
+```
 
 ### 3. 四捨五入
 
