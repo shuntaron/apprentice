@@ -87,3 +87,14 @@ WHERE from_date = '1986-06-26';
 ```
 
 ### 8. 少数第1桁
+給与情報(salaries テーブル)から、to_date が1991年6月26日の従業員の平均給与を少数第1桁で取得
+```sql
+SELECT TRUNCATE(AVG(salary), 1) FROM salaries
+WHERE to_date = '1991-06-26';
++--------------------------+
+| TRUNCATE(AVG(salary), 1) |
++--------------------------+
+|                  57371.5 |
++--------------------------+
+1 row in set (0.86 sec)
+```
