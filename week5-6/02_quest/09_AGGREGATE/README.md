@@ -74,6 +74,16 @@ SELECT COUNT(*) FROM salaries;
 ```
 
 ### 7. 絞り込みとの組み合わせ
-
+給与情報(salaries テーブル)から、from_date が1986年6月26日の従業員の最大給与を取得
+```sql
+SELECT MAX(salary) FROM salaries
+WHERE from_date = '1986-06-26';
++-------------+
+| MAX(salary) |
++-------------+
+|      103344 |
++-------------+
+1 row in set (0.68 sec)
+```
 
 ### 8. 少数第1桁
