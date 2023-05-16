@@ -50,7 +50,16 @@ SELECT MAX(salary) FROM salaries;
 ```
 
 ### 5. 列の最小値
-
+給与情報(salaries テーブル)から、全データの給与の最小値を取得
+```sql
+SELECT MIN(salary) FROM salaries;
++-------------+
+| MIN(salary) |
++-------------+
+|       38623 |
++-------------+
+1 row in set (0.62 sec)
+```
 
 ### 6. 行数
 
