@@ -62,7 +62,16 @@ SELECT MIN(salary) FROM salaries;
 ```
 
 ### 6. 行数
-
+給与情報(salaries テーブル)から、全データの行数を取得
+```sql
+SELECT COUNT(*) FROM salaries;
++----------+
+| COUNT(*) |
++----------+
+|  2844047 |
++----------+
+1 row in set (0.46 sec)
+```
 
 ### 7. 絞り込みとの組み合わせ
 
