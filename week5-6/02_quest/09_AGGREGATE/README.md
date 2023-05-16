@@ -25,7 +25,17 @@ SELECT AVG(salary) FROM salaries;
 ```
 
 ### 3. 四捨五入
-
+給与情報(salaries テーブル)から、全データの給与の平均値を取得
+なお、給与の平均値を四捨五入して整数とする
+```sql
+SELECT ROUND(AVG(salary)) FROM salaries;
++--------------------+
+| ROUND(AVG(salary)) |
++--------------------+
+|              63811 |
++--------------------+
+1 row in set (0.92 sec)
+```
 
 ### 3. 列の最大値
 
