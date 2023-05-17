@@ -25,7 +25,7 @@ SELECT AVG(salary) FROM salaries;
 ```
 
 ### 3. 四捨五入
-給与情報(salaries テーブル)から、全データの給与の平均値を取得
+給与情報(salaries テーブル)から、全データの給与の平均値を取得  
 なお、給与の平均値を四捨五入して整数とする
 ```sql
 SELECT ROUND(AVG(salary)) FROM salaries;
