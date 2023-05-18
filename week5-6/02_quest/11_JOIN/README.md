@@ -38,7 +38,7 @@ ON dept_manager.emp_no = employees.emp_no;
 ```
 
 ### 2. 列の選択
-部署(departments)ごとに、部署番号、歴代のマネージャーの従業員番号、マネージャーのファーストネーム、マネージャーのラストネームを取得
+部署ごとに、部署番号、歴代のマネージャーの従業員番号、マネージャーのファーストネーム、マネージャーのラストネームを取得
 ```sql
 SELECT d.dept_no, d.emp_no, e.first_name, e.last_name
 FROM dept_manager d
@@ -116,7 +116,31 @@ ORDER BY d.dept_no;
 24 rows in set (0.01 sec)
 ```
 ### 4. 絞り込み
-
+部署ごとに、部署番号、部署名、現在のマネージャーの従業員番号、マネージャーのファーストネーム、マネージャーのラストネームを取得
+```sql
+SELECT dm.dept_no, d.dept_name, dm.emp_no, e.first_name, e.last_name
+FROM dept_manager dm
+INNER JOIN employees e
+ON dm.emp_no = e.emp_no
+INNER JOIN departments d
+ON dm.dept_no = d.dept_no
+WHERE dm.to_date = '9999-01-01'
+ORDER BY d.dept_no;
++---------+--------------------+--------+------------+------------+
+| dept_no | dept_name          | emp_no | first_name | last_name  |
++---------+--------------------+--------+------------+------------+
+| d001    | Marketing          | 110039 | Vishwani   | Minakawa   |
+| d002    | Finance            | 110114 | Isamu      | Legleitner |
+| d003    | Human Resources    | 110228 | Karsten    | Sigstam    |
+| d004    | Production         | 110420 | Oscar      | Ghazalie   |
+| d005    | Development        | 110567 | Leon       | DasSarma   |
+| d006    | Quality Management | 110854 | Dung       | Pesch      |
+| d007    | Sales              | 111133 | Hauke      | Zhang      |
+| d008    | Research           | 111534 | Hilary     | Kambil     |
+| d009    | Customer Service   | 111939 | Yuchang    | Weedman    |
++---------+--------------------+--------+------------+------------+
+9 rows in set (0.01 sec)
+```
 
 ### 5. 給与
 
