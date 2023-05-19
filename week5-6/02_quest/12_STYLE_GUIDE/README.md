@@ -5,7 +5,7 @@
 
 ### 1. スタイルガイド
 [SQL スタイルガイド](https://www.sqlstyle.guide/ja/)  
-[SQL スタイルガイド（日本語訳）](SQL.STYLE.GUIDE.JA.md)  
+[SQL スタイルガイド（日本語訳）](./SQL_STYLE_GUIDE_JA.md)  
 https://raw.githubusercontent.com/treffynnon/sqlstyle.guide/gh-pages/_includes/sqlstyle.guide.ja.md
 
 ### 2. スタイルガイドに則る
