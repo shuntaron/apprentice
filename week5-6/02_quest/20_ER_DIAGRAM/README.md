@@ -63,7 +63,7 @@ erDiagram
 
   "購入" {
     integer   id             PK  "購入ID"
-    datetime  purchase_date    
+    datetime  purchase_date      "購入日"
     integer   user_id        FK  "ユーザーID"
   }
   
