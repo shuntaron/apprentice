@@ -74,7 +74,7 @@ erDiagram
 
   "購入商品" {
     integer   id             PK  "購入商品ID"
-    integer   id             FK  "購入ID"
+    integer   purchase_id    FK  "購入ID"
     integer   product_id     FK  "商品ID"
   }
 
