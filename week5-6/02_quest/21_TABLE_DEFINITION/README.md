@@ -63,43 +63,47 @@ EC サイトの ER 図を、テーブル定義する
 
 ### [購入テーブル]
 テーブル：purchases
-| カラム名          | データ型       | NULL | キー      | 初期値  | AUTO INCREMENT |
-| ------------- | ---------- | ---- | ------- | ---- | -------------- |
-| id            | bigint(20) |      | PRIMARY | NULL | YES            |
-| purchase_date | date       |      |         | NULL |                |
-| user_id       | int(11)    |      |         | NULL |                |
+| カラム名          | データ型       | NULL | キー      | 初期値 | AUTO INCREMENT |
+| ------------- | ---------- | ---- | ------- | --- | -------------- |
+| id            | bigint(20) |      | PRIMARY |     | YES            |
+| purchase_date | date       |      |         |     |                |
+| user_id       | int(11)    | YES  |         |     |                |
 
+- 外部キー制約：user_id に対して、users テーブルの id カラムから設定
 
 ### [ユーザーテーブル]
 テーブル名：users
-| カラム名 | データ型         | NULL | キー      | 初期値  | AUTO INCREMENT |
-| ---- | ------------ | ---- | ------- | ---- | -------------- |
-| id   | bigint(20)   |      | PRIMARY | NULL | YES            |
-| name | varchar(255) |      |         |      |                |
+| カラム名 | データ型         | NULL | キー      | 初期値 | AUTO INCREMENT |
+| ---- | ------------ | ---- | ------- | --- | -------------- |
+| id   | bigint(20)   |      | PRIMARY |     | YES            |
+| name | varchar(255) |      |         |     |                |
 
 
 ### [購入商品テーブル]
 テーブル名：purchase_products
-| カラム名          | データ型       | NULL | キー      | 初期値  | AUTO INCREMENT |
-| ------------- | ---------- | ---- | ------- | ---- | -------------- |
-| id            | bigint(20) |      | PRIMARY | NULL | YES            |
-| purchase_date | date       |      |         | NULL |                |
-| product_id    | int(11)    |      |         | NULL |                |
+| カラム名        | データ型       | NULL | キー      | 初期値 | AUTO INCREMENT |
+| ----------- | ---------- | ---- | ------- | --- | -------------- |
+| id          | bigint(20) |      | PRIMARY |     | YES            |
+| purchase_id | int(11)    | YES  |         |     |                |
+| product_id  | int(11)    | YES  |         |     |                |
 
+- 外部キー制約：purchase_id に対して、purchases テーブルの id カラムから設定
+- 外部キー制約：product_id に対して、products テーブルの id カラムから設定
 
 ### [商品テーブル]
 テーブル名：products
-| カラム名        | データ型       | NULL | キー      | 初期値  | AUTO INCREMENT |
-| ----------- | ---------- | ---- | ------- | ---- | -------------- |
-| id          | bigint(20) |      | PRIMARY | NULL | YES            |
-| name        | date       |      |         | NULL |                |
-| price       | int(11)    |      |         | NULL |                |
-| category_id | int(11)    |      |         | NULL |                |
+| カラム名        | データ型       | NULL | キー      | 初期値 | AUTO INCREMENT |
+| ----------- | ---------- | ---- | ------- | --- | -------------- |
+| id          | bigint(20) |      | PRIMARY |     | YES            |
+| name        | date       |      |         |     |                |
+| price       | int(11)    |      |         |     |                |
+| category_id | int(11)    | YES  |         |     |                |
 
+- 外部キー制約：category_id に対して、category テーブルの id カラムから設定
 
 ### [カテゴリーテーブル]
 テーブル名：categories
-| カラム名 | データ型         | NULL | キー      | 初期値  | AUTO INCREMENT |
-| ---- | ------------ | ---- | ------- | ---- | -------------- |
-| id   | bigint(20)   |      | PRIMARY | NULL | YES            |
-| name | varchar(255) |      |         | NULL |                |
+| カラム名 | データ型         | NULL | キー      | 初期値 | AUTO INCREMENT |
+| ---- | ------------ | ---- | ------- | --- | -------------- |
+| id   | bigint(20)   |      | PRIMARY |     | YES            |
+| name | varchar(255) |      |         |     |                |
