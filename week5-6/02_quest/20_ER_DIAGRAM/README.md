@@ -62,31 +62,31 @@ erDiagram
   "カテゴリー"   ||--o{ "商品": ""
 
   "購入" {
-    integer   id             PK  "購入ID"
-    datetime  purchase_date      "購入日"
-    integer   user_id        FK  "ユーザーID"
+    bigint(20)      id             PK  "購入ID"
+    date            purchase_date      "購入日"
+    int(11)         user_id        FK  "ユーザーID"
   }
   
   "ユーザー" {
-    integer   id             PK  "ユーザーID"
-    string    name               "名前"
+    bigint(20)      id             PK  "ユーザーID"
+    varchar(255)    name               "名前"
   }
 
   "購入商品" {
-    integer   id             PK  "購入商品ID"
-    integer   purchase_id    FK  "購入ID"
-    integer   product_id     FK  "商品ID"
+    bigint(20)      id             PK  "購入商品ID"
+    int(11)         purchase_id    FK  "購入ID"
+    int(11)         product_id     FK  "商品ID"
   }
 
   "商品" {
-    integer   id             PK  "購入ID"
-    string    product_name       "商品名"
-    integer   price              "値段"
-    integer   category_id    FK  "カテゴリーID"
+    bigint(20)      id             PK  "購入ID"
+    varchar(255)    name               "商品名"
+    int(11)         price              "値段"
+    int(11)         category_id    FK  "カテゴリーID"
   }
 
   "カテゴリー" {
-    integer   id             PK  "カテゴリーID"
-    string    product_name       "カテゴリー名"
+    bigint(20)      id             PK  "カテゴリーID"
+    varchar(255)    product_name       "カテゴリー名"
   }
 ```
