@@ -18,7 +18,14 @@ WHERE birth_date = '1961-08-03';
 ```
 
 ### 2. インデックスの作成
+employees データベースの employees テーブルの birth_date カラムにインデックスを作成  
 
+```sql
+ALTER TABLE employees
+ADD INDEX birth_date_index (birth_date);
+Query OK, 0 rows affected (3.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+```
 
 ### 3. インデックスの確認
 
