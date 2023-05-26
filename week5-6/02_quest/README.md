@@ -93,6 +93,14 @@ WHERE birth_date = '1961-08-03';
 インデックスを張ることでポインタ情報を参照し、テーブルの特定レコードを狙い撃ちでアクセスできるためクエリが高速化された  
 
 ### 6. インデックスの削除
+作成したインデックスを削除
+
+```sql
+ALTER TABLE employees
+DROP INDEX birth_date_index;
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+```
 
 
 ### 7. ベストプラクティス
