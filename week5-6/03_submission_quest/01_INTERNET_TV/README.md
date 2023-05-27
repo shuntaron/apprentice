@@ -154,8 +154,6 @@ erDiagram
 | number | bigint(20)   |      |         |         |                |
 | name   | varchar(255) |      |         |         |                |
 
-- ユニークキー制約： number カラムに対して設定
-
 ### [program - episodes テーブル]
 テーブル名： program_episodes
 | COLUMN     | DATA TYPE  | NULL | KEY     | DEFAULT | AUTO INCREMENT |
@@ -167,6 +165,17 @@ erDiagram
 
 - 外部キー制約： program_id に対して、 programs テーブルの id カラムから設定
 - 外部キー制約： episode_id に対して、 episodes テーブルの id カラムから設定
+
+### [program - genres テーブル]
+テーブル名： program_genres
+| COLUMN     | DATA TYPE  | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ---------- | ---------- | ---- | ------- | ------- | -------------- |
+| id         | bigint(20) |      | PRIMARY |         | YES            |
+| program_id | bigint(20) | YES  |         |         |                |
+| genre_id  | bigint(20) | YES  |         |         |                |
+
+- 外部キー制約： program_id に対して、 programs テーブルの id カラムから設定
+- 外部キー制約： genres_id に対して、 genres テーブルの id カラムから設定
 
 ### [episodes テーブル]
 テーブル名： episodes
@@ -181,7 +190,6 @@ erDiagram
 | view_count | bigint(20)   |      |         | 0       |                |
 
 - 外部キー制約： season_id に対して、 seasons テーブルの id カラムから設定
-- ユニークキー制約： number カラムに対して設定
 
 ### [genres テーブル]
 テーブル名： genres
@@ -215,42 +223,42 @@ USE internet_tv;
 2. ステップ1で設計したテーブルの構築
 ```sql
 CREATE TABLE channels (
-  id              bigint(20)    NOT NULL PRIMARY KEY,
-  name            varchar(255)  NOT NULL             
+  id              BIGINT(20)    NOT NULL PRIMARY KEY,
+  name            VARCHAR(255)  NOT NULL             
 );
 
 CREATE TABLE seasons (
-  id              bigint(20)    NOT NULL PRIMARY KEY,
-  number          bigint(20)    UNIQUE NOT NULL     ,
-  name            varchar(255)  NOT NULL             
+  id              BIGINT(20)    NOT NULL PRIMARY KEY,
+  number          BIGINT(20)    NOT NULL            ,
+  name            VARCHAR(255)  NOT NULL             
 );
 
 CREATE TABLE genres (
-  id              bigint(20)    NOT NULL PRIMARY KEY,
-  name            varchar(255)  NOT NULL             
+  id              BIGINT(20)    NOT NULL PRIMARY KEY,
+  name            VARCHAR(255)  NOT NULL             
 );
 
 CREATE TABLE episodes (
-  id              bigint(20)    NOT NULL PRIMARY KEY,
-  season_id       bigint(20)                        ,
-  number          bigint(20)    UNIQUE NOT NULL     ,
-  title           varchar(255)  NOT NULL            ,
-  detail          text          NOT NULL            ,
-  duration        time          NOT NULL            ,
-  view_count      bigint(20)    NOT NULL            ,
+  id              BIGINT(20)    NOT NULL PRIMARY KEY,
+  season_id       BIGINT(20)                        ,
+  number          BIGINT(20)    NOT NULL            ,
+  title           VARCHAR(255)  NOT NULL            ,
+  detail          TEXT          NOT NULL            ,
+  duration        TIME          NOT NULL            ,
+  view_count      BIGINT(20)    NOT NULL            ,
   FOREIGN KEY     fk_season_id(season_id)            
   REFERENCES      seasons(id)                        
 );
 
 CREATE TABLE programs (
-  id              bigint(20)    NOT NULL PRIMARY KEY,
-  channel_id      bigint(20)                        ,
-  episode_id      bigint(20)                        ,
-  genre_id        bigint(20)    NOT NULL            ,
-  title           varchar(255)  NOT NULL            ,
-  detail          text          NOT NULL            ,
-  start_time      datetime      NOT NULL            ,
-  end_time        datetime      NOT NULL            ,
+  id              BIGINT(20)    NOT NULL PRIMARY KEY,
+  channel_id      BIGINT(20)                        ,
+  episode_id      BIGINT(20)                        ,
+  genre_id        BIGINT(20)    NOT NULL            ,
+  title           VARCHAR(255)  NOT NULL            ,
+  detail          TEXT          NOT NULL            ,
+  start_time      DATETIME      NOT NULL            ,
+  end_time        DATETIME      NOT NULL            ,
   FOREIGN KEY     fk_channel_id(channel_id)          
   REFERENCES      channels(id)                      ,
   FOREIGN KEY     fk_episode_id(episode_id)          
@@ -260,10 +268,10 @@ CREATE TABLE programs (
 );
 
 CREATE TABLE program_episodes (
-  id              bigint(20)    NOT NULL PRIMARY KEY,
-  program_id      bigint(20)                        ,
-  episode_id      bigint(20)                        ,
-  view_count      bigint(20)    DEFAULT 0           ,
+  id              BIGINT(20)    NOT NULL PRIMARY KEY,
+  program_id      BIGINT(20)                        ,
+  episode_id      BIGINT(20)                        ,
+  view_count      BIGINT(20)    DEFAULT 0           ,
   FOREIGN KEY     fk_program_id(program_id)          
   REFERENCES      programs(id)                      ,
   FOREIGN KEY     fk_episode_id(episode_id)          
@@ -271,19 +279,123 @@ CREATE TABLE program_episodes (
 );
 
 CREATE TABLE program_genres (
-  id              bigint(20)    NOT NULL PRIMARY KEY,
-  program_id      bigint(20)                        ,
-  genre_id        bigint(20)                        ,
+  id              BIGINT(20)    NOT NULL PRIMARY KEY,
+  program_id      BIGINT(20)                        ,
+  genre_id        BIGINT(20)                        ,
   FOREIGN KEY     fk_program_id(program_id)          
   REFERENCES      programs(id)                      ,
   FOREIGN KEY     fk_genre_id(genre_id)              
   REFERENCES      genres(id)                         
 );
-
 ```
 
 3. サンプルデータ格納
+```sql
+INSERT INTO channels (id, name)
+VALUES
+(1, 'Channel 1'),
+(2, 'Channel 2'),
+(3, 'Channel 3'),
+(4, 'Channel 4'),
+(5, 'Channel 5'),
+(6, 'Channel 6'),
+(7, 'Channel 7'),
+(8, 'Channel 8'),
+(9, 'Channel 9'),
+(10, 'Channel 10');
 
+INSERT INTO seasons (id, number, name)
+VALUES
+(1, 1, 'Season 1'),
+(2, 2, 'Season 2'),
+(3, 3, 'Season 3'),
+(4, 4, 'Season 4'),
+(5, 5, 'Season 5'),
+(6, 6, 'Season 6'),
+(7, 7, 'Season 7'),
+(8, 8, 'Season 8'),
+(9, 9, 'Season 9'),
+(10, 10, 'Season 10');
+
+INSERT INTO genres (id, name)
+VALUES
+(1, 'Genre 1'),
+(2, 'Genre 2'),
+(3, 'Genre 3'),
+(4, 'Genre 4'),
+(5, 'Genre 5'),
+(6, 'Genre 6'),
+(7, 'Genre 7'),
+(8, 'Genre 8'),
+(9, 'Genre 9'),
+(10, 'Genre 10');
+
+INSERT INTO episodes (id, season_id, number, title, detail, duration, view_count)
+VALUES
+(1, 1, 1, 'Episode 1', 'Episode 1 description', '00:30:00', 500),
+(2, 1, 2, 'Episode 2', 'Episode 2 description', '00:45:00', 400),
+(3, 2, 1, 'Episode 1', 'Episode 1 description', '00:30:00', 600),
+(4, 2, 2, 'Episode 2', 'Episode 2 description', '00:45:00', 300),
+(5, 3, 1, 'Episode 1', 'Episode 1 description', '00:30:00', 700),
+(6, 3, 2, 'Episode 2', 'Episode 2 description', '00:45:00', 200),
+(7, 4, 1, 'Episode 1', 'Episode 1 description', '00:30:00', 800),
+(8, 4, 2, 'Episode 2', 'Episode 2 description', '00:45:00', 100),
+(9, 5, 1, 'Episode 1', 'Episode 1 description', '00:30:00', 900),
+(10, 5, 2, 'Episode 2', 'Episode 2 description', '00:45:00', 50);
+
+
+INSERT INTO programs (id, channel_id, episode_id, genre_id, title, detail, start_time, end_time)
+VALUES
+(1, 1, 1, 1, 'Program 1', 'Program 1 description', '2023-05-28 08:00:00', '2023-05-28 09:00:00'),
+(2, 1, 2, 2, 'Program 2', 'Program 2 description', '2023-05-28 09:00:00', '2023-05-28 10:00:00'),
+(3, 2, 3, 1, 'Program 3', 'Program 3 description', '2023-05-28 10:00:00', '2023-05-28 11:00:00'),
+(4, 2, 4, 3, 'Program 4', 'Program 4 description', '2023-05-28 11:00:00', '2023-05-28 12:00:00'),
+(5, 3, 5, 2, 'Program 5', 'Program 5 description', '2023-05-28 12:00:00', '2023-05-28 13:00:00'),
+(6, 3, 6, 1, 'Program 6', 'Program 6 description', '2023-05-28 13:00:00', '2023-05-28 14:00:00'),
+(7, 4, 7, 3, 'Program 7', 'Program 7 description', '2023-05-28 14:00:00', '2023-05-28 15:00:00'),
+(8, 4, 8, 2, 'Program 8', 'Program 8 description', '2023-05-28 15:00:00', '2023-05-28 16:00:00'),
+(9, 5, 9, 1, 'Program 9', 'Program 9 description', '2023-05-28 16:00:00', '2023-05-28 17:00:00'),
+(10, 5, 10, 3, 'Program 10', 'Program 10 description', '2023-05-28 17:00:00', '2023-05-28 18:00:00');
+
+INSERT INTO program_genres (id, program_id, genre_id)
+VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 2),
+(4, 2, 3),
+(5, 3, 1),
+(6, 3, 3),
+(7, 4, 3),
+(8, 4, 4),
+(9, 5, 2),
+(10, 5, 4);
+
+INSERT INTO program_episodes (id, program_id, episode_id, view_count)
+VALUES
+(1, 1, 1, 100),
+(2, 1, 2, 50),
+(3, 2, 3, 80),
+(4, 2, 4, 120),
+(5, 3, 5, 90),
+(6, 3, 6, 70),
+(7, 4, 7, 110),
+(8, 4, 8, 60),
+(9, 5, 9, 95),
+(10, 5, 10, 75);
+
+INSERT INTO episodes (id, season_id, number, title, detail, duration, view_count)
+VALUES
+(1, 1, 1, 'Episode 1', 'Episode 1 description', '00:30:00', 500),
+(2, 1, 2, 'Episode 2', 'Episode 2 description', '00:45:00', 400),
+(3, 2, 1, 'Episode 1', 'Episode 1 description', '00:30:00', 600),
+(4, 2, 2, 'Episode 2', 'Episode 2 description', '00:45:00', 300),
+(5, 3, 1, 'Episode 1', 'Episode 1 description', '00:30:00', 700),
+(6, 3, 2, 'Episode 2', 'Episode 2 description', '00:45:00', 200),
+(7, 4, 1, 'Episode 1', 'Episode 1 description', '00:30:00', 800),
+(8, 4, 2, 'Episode 2', 'Episode 2 description', '00:45:00', 100),
+(9, 5, 1, 'Episode 1', 'Episode 1 description', '00:30:00', 900),
+(10, 5, 2, 'Episode 2', 'Episode 2 description', '00:45:00', 50);
+```
 
 ## ステップ3
 
