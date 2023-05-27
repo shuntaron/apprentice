@@ -64,7 +64,7 @@ erDiagram
   "購入" {
     id             bigint(20)      PK  "購入ID"
     purchase_date  date                "購入日"
-    user_id        int(11)         FK  "ユーザーID"
+    user_id        bigint(20)      FK  "ユーザーID"
   }
   
   "ユーザー" {
@@ -74,15 +74,15 @@ erDiagram
 
   "購入商品" {
     id             bigint(20)      PK  "購入商品ID"
-    purchase_id    int(11)         FK  "購入ID"
-    product_id     int(11)         FK  "商品ID"
+    purchase_id    bigint(20)      FK  "購入ID"
+    product_id     bigint(20)      FK  "商品ID"
   }
 
   "商品" {
     id             bigint(20)      PK  "購入ID"
     name           varchar(255)        "商品名"
-    price          int(11)             "値段"
-    category_id    int(11)         FK  "カテゴリーID"
+    price          bigint(20)          "値段"
+    category_id    bigint(20)      FK  "カテゴリーID"
   }
 
   "カテゴリー" {

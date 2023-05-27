@@ -71,15 +71,15 @@ erDiagram
   Genre   ||--o{ ProgramGenre: ""
 
   Channel {
-    id     bigint(20)             PK
-    name   varchar(255)             
+    id              bigint(20)    PK
+    name            varchar(255)    
   }
 
   Program {
     id              bigint(20)    PK
-    channel_id      int(11)       FK
-    episode_id      int(11)       FK
-    genre_id        int(11)       FK
+    channel_id      bigint(20)    FK
+    episode_id      bigint(20)    FK
+    genre_id        bigint(20)    FK
     title           varchar(255)    
     detail          text            
     start_time      datetime        
@@ -88,31 +88,31 @@ erDiagram
 
   Season {
     id              bigint(20)    PK
-    number          int(11)         
+    number          bigint(20)      
     name            varchar(255)    
   }
 
   ProgramEpisode {
     id              bigint(20)    PK
-    program_id      varchar(255)  FK
-    episode_id      int(11)       FK
-    view_count      int(11)         
+    program_id      bigint(20)    FK
+    episode_id      bigint(20)    FK
+    view_count      bigint(20)      
   }
 
   ProgramGenre {
     id              bigint(20)    PK
-    program_id      varchar(255)  FK
-    genre_id        int(11)       FK
+    program_id      bigint(20)    FK
+    genre_id        bigint(20)    FK
   }
 
   Episode {
     id              bigint(20)    PK
-    season_id       varchar(255)  FK
-    number          int(11)         
+    season_id       bigint(20)    FK
+    number          bigint(20)      
     title           varchar(255)    
     detail          text            
     duration        time            
-    view_count      int(11)         
+    view_count      bigint(20)      
   }
 
   Genre {
@@ -134,9 +134,9 @@ erDiagram
 | COLUMN     | DATA TYPE    | NULL | KEY     | DEFAULT | AUTO INCREMENT |
 | ---------- | ------------ | ---- | ------- | ------- | -------------- |
 | id         | bigint(20)   |      | PRIMARY |         | YES            |
-| channel_id | int(11)      | YES  |         |         |                |
-| episode_id | int(11)      | YES  |         |         |                |
-| genre_id   | int(11)      | YES  |         |         |                |
+| channel_id | bigint(20)   | YES  |         |         |                |
+| episode_id | bigint(20)   | YES  |         |         |                |
+| genre_id   | bigint(20)   | YES  |         |         |                |
 | title      | varchar(255) |      |         |         |                |
 | detail     | text         |      |         |         |                |
 | start_time | datetime     |      |         |         |                |
@@ -151,19 +151,19 @@ erDiagram
 | COLUMN | DATA TYPE    | NULL | KEY     | DEFAULT | AUTO INCREMENT |
 | ------ | ------------ | ---- | ------- | ------- | -------------- |
 | id     | bigint(20)   |      | PRIMARY |         | YES            |
-| number | int(11)      |      |         |         |                |
+| number | bigint(20)   |      |         |         |                |
 | name   | varchar(255) |      |         |         |                |
 
-- 外部キー制約：category_id に対して、category テーブルの id カラムから設定
+- ユニークキー制約： number カラムに対して設定
 
 ### [program - episodes テーブル]
 テーブル名： program_episodes
 | COLUMN     | DATA TYPE  | NULL | KEY     | DEFAULT | AUTO INCREMENT |
 | ---------- | ---------- | ---- | ------- | ------- | -------------- |
 | id         | bigint(20) |      | PRIMARY |         | YES            |
-| program_id | int(11)    | YES  |         |         |                |
-| episode_id | int(11)    | YES  |         |         |                |
-| view_count | int(11)    |      |         | 0       |                |
+| program_id | bigint(20) | YES  |         |         |                |
+| episode_id | bigint(20) | YES  |         |         |                |
+| view_count | bigint(20) |      |         | 0       |                |
 
 - 外部キー制約： program_id に対して、 programs テーブルの id カラムから設定
 - 外部キー制約： episode_id に対して、 episodes テーブルの id カラムから設定
@@ -173,14 +173,15 @@ erDiagram
 | COLUMN     | DATA TYPE    | NULL | KEY     | DEFAULT | AUTO INCREMENT |
 | ---------- | ------------ | ---- | ------- | ------- | -------------- |
 | id         | bigint(20)   |      | PRIMARY |         | YES            |
-| season_id  | int(11)      | YES  |         |         |                |
-| number     | int(11)      | YES  |         |         |                |
+| season_id  | bigint(20)   | YES  |         |         |                |
+| number     | bigint(20)   | YES  |         |         |                |
 | title      | varchar(255) |      |         |         |                |
 | detail     | text         |      |         |         |                |
 | duration   | time         |      |         |         |                |
-| view_count | int(11)      |      |         | 0       |                |
+| view_count | bigint(20)   |      |         | 0       |                |
 
 - 外部キー制約： season_id に対して、 seasons テーブルの id カラムから設定
+- ユニークキー制約： number カラムに対して設定
 
 ### [genres テーブル]
 テーブル名： genres
@@ -191,6 +192,97 @@ erDiagram
 
 
 ## ステップ2
+実際にテーブルを構築し、データを格納する  
+手順をドキュメント化する  
+
+### 手順概要
+1. データベース構築
+2. ステップ1で設計したテーブルの構築
+3. サンプルデータ格納
+
+### 目的
+- データを実際に入れることでステップ3でデータ抽出クエリを試せるようにする
+- 手順をドキュメントにまとめることで、自身がやり直したい時にすぐやり直せるようにする
+- 手順を人が同じように行えるようにまとめることで、ドキュメントコミュニケーション力を上げる
+
+### 手順詳細
+1. データベース構築
+```sql
+CREATE DATABASE internet_tv;
+USE internet_tv;
+```
+
+2. ステップ1で設計したテーブルの構築
+```sql
+CREATE TABLE channels (
+  id              bigint(20)    NOT NULL PRIMARY KEY,
+  name            varchar(255)  NOT NULL             
+);
+
+CREATE TABLE seasons (
+  id              bigint(20)    NOT NULL PRIMARY KEY,
+  number          bigint(20)    UNIQUE NOT NULL     ,
+  name            varchar(255)  NOT NULL             
+);
+
+CREATE TABLE genres (
+  id              bigint(20)    NOT NULL PRIMARY KEY,
+  name            varchar(255)  NOT NULL             
+);
+
+CREATE TABLE episodes (
+  id              bigint(20)    NOT NULL PRIMARY KEY,
+  season_id       bigint(20)                        ,
+  number          bigint(20)    UNIQUE NOT NULL     ,
+  title           varchar(255)  NOT NULL            ,
+  detail          text          NOT NULL            ,
+  duration        time          NOT NULL            ,
+  view_count      bigint(20)    NOT NULL            ,
+  FOREIGN KEY     fk_season_id(season_id)            
+  REFERENCES      seasons(id)                        
+);
+
+CREATE TABLE programs (
+  id              bigint(20)    NOT NULL PRIMARY KEY,
+  channel_id      bigint(20)                        ,
+  episode_id      bigint(20)                        ,
+  genre_id        bigint(20)    NOT NULL            ,
+  title           varchar(255)  NOT NULL            ,
+  detail          text          NOT NULL            ,
+  start_time      datetime      NOT NULL            ,
+  end_time        datetime      NOT NULL            ,
+  FOREIGN KEY     fk_channel_id(channel_id)          
+  REFERENCES      channels(id)                      ,
+  FOREIGN KEY     fk_episode_id(episode_id)          
+  REFERENCES      episodes(id)                      ,
+  FOREIGN KEY     fk_genre_id(genre_id)              
+  REFERENCES      genres(id)                         
+);
+
+CREATE TABLE program_episodes (
+  id              bigint(20)    NOT NULL PRIMARY KEY,
+  program_id      bigint(20)                        ,
+  episode_id      bigint(20)                        ,
+  view_count      bigint(20)    DEFAULT 0           ,
+  FOREIGN KEY     fk_program_id(program_id)          
+  REFERENCES      programs(id)                      ,
+  FOREIGN KEY     fk_episode_id(episode_id)          
+  REFERENCES      episodes(id)                       
+);
+
+CREATE TABLE program_genres (
+  id              bigint(20)    NOT NULL PRIMARY KEY,
+  program_id      bigint(20)                        ,
+  genre_id        bigint(20)                        ,
+  FOREIGN KEY     fk_program_id(program_id)          
+  REFERENCES      programs(id)                      ,
+  FOREIGN KEY     fk_genre_id(genre_id)              
+  REFERENCES      genres(id)                         
+);
+
+```
+
+3. サンプルデータ格納
 
 
 ## ステップ3
