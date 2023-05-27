@@ -87,6 +87,6 @@ erDiagram
 
   "カテゴリー" {
     bigint(20)      id             PK  "カテゴリーID"
-    varchar(255)    product_name       "カテゴリー名"
+    varchar(255)    name               "カテゴリー名"
   }
 ```
