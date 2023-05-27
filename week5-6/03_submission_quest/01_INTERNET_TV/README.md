@@ -60,6 +60,68 @@
 - シーズン
 - エピソード
 
+### ER図
+```mermaid
+erDiagram
+  Channel ||--o{ Program: ""
+  Program ||--o{ Season: ""
+  Program ||--o{ ProgramEpisode: ""
+  Program ||--o{ ProgramGenre: ""
+  Season  ||--o{ Episode: ""
+  Episode ||--o{ ProgramEpisode: ""
+  Genre   ||--o{ ProgramGenre: ""
+
+  Channel {
+    id     bigint(20)             PK
+    name   varchar(255)             
+  }
+
+  Program {
+    id              bigint(20)    PK
+    channel_id      int(11)       FK
+    season_id       int(11)       FK
+    episode_id      int(11)       FK
+    genre_id        int(11)       FK
+    title           varchar(255)    
+    detail          text            
+    start_time      datetime        
+    end_time        datetime        
+  }
+
+  Season {
+    id              bigint(20)    PK
+    number          int(11)         
+    name            varchar(255)    
+  }
+
+  ProgramEpisode {
+    id              bigint(20)    PK
+    program_id      varchar(255)  FK
+    episode_id      int(11)       FK
+    view_count      int(11)         
+  }
+
+  ProgramGenre {
+    id              bigint(20)    PK
+    program_id      varchar(255)  FK
+    genre_id        int(11)       FK
+  }
+
+  Episode {
+    id              bigint(20)    PK
+    season_id       varchar(255)  FK
+    number          int(11)         
+    title           varchar(255)    
+    detail          text            
+    view_count      int             
+  }
+
+  Genre {
+    id              bigint(20)    PK
+    name            varchar(255)    
+  }
+```
+
 ## ステップ2
 
 
