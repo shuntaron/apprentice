@@ -64,9 +64,8 @@
 ```mermaid
 erDiagram
   Channel ||--o{ Program: ""
-  Program ||--o{ Season: ""
-  Program ||--o{ ProgramEpisode: ""
   Program ||--o{ ProgramGenre: ""
+  Program ||--o{ ProgramEpisode: ""
   Season  ||--o{ Episode: ""
   Episode ||--o{ ProgramEpisode: ""
   Genre   ||--o{ ProgramGenre: ""
@@ -79,7 +78,6 @@ erDiagram
   Program {
     id              bigint(20)    PK
     channel_id      int(11)       FK
-    season_id       int(11)       FK
     episode_id      int(11)       FK
     genre_id        int(11)       FK
     title           varchar(255)    
@@ -113,7 +111,8 @@ erDiagram
     number          int(11)         
     title           varchar(255)    
     detail          text            
-    view_count      int             
+    duration        time            
+    view_count      int(11)         
   }
 
   Genre {
@@ -121,6 +120,75 @@ erDiagram
     name            varchar(255)    
   }
 ```
+
+### テーブル定義
+### [channels テーブル]
+テーブル名： channels
+| COLUMN | DATA TYPE    | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ------ | ------------ | ---- | ------- | ------- | -------------- |
+| id     | bigint(20)   |      | PRIMARY |         | YES            |
+| name   | varchar(255) |      |         |         |                |
+
+### [programs テーブル]
+テーブル名： programs
+| COLUMN     | DATA TYPE    | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ---------- | ------------ | ---- | ------- | ------- | -------------- |
+| id         | bigint(20)   |      | PRIMARY |         | YES            |
+| channel_id | int(11)      | YES  |         |         |                |
+| episode_id | int(11)      | YES  |         |         |                |
+| genre_id   | int(11)      | YES  |         |         |                |
+| title      | varchar(255) |      |         |         |                |
+| detail     | text         |      |         |         |                |
+| start_time | datetime     |      |         |         |                |
+| end_time   | datetime     |      |         |         |                |
+
+- 外部キー制約： channel_id に対して、 channels テーブルの id カラムから設定
+- 外部キー制約： episode_id に対して、 episodes テーブルの id カラムから設定
+- 外部キー制約： genre_id に対して、 genres テーブルの id カラムから設定
+
+### [seasons テーブル]
+テーブル名： seasons
+| COLUMN | DATA TYPE    | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ------ | ------------ | ---- | ------- | ------- | -------------- |
+| id     | bigint(20)   |      | PRIMARY |         | YES            |
+| number | int(11)      |      |         |         |                |
+| name   | varchar(255) |      |         |         |                |
+
+- 外部キー制約：category_id に対して、category テーブルの id カラムから設定
+
+### [program - episodes テーブル]
+テーブル名： program_episodes
+| COLUMN     | DATA TYPE  | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ---------- | ---------- | ---- | ------- | ------- | -------------- |
+| id         | bigint(20) |      | PRIMARY |         | YES            |
+| program_id | int(11)    | YES  |         |         |                |
+| episode_id | int(11)    | YES  |         |         |                |
+| view_count | int(11)    |      |         | 0       |                |
+
+- 外部キー制約： program_id に対して、 programs テーブルの id カラムから設定
+- 外部キー制約： episode_id に対して、 episodes テーブルの id カラムから設定
+
+### [episodes テーブル]
+テーブル名： episodes
+| COLUMN     | DATA TYPE    | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ---------- | ------------ | ---- | ------- | ------- | -------------- |
+| id         | bigint(20)   |      | PRIMARY |         | YES            |
+| season_id  | int(11)      | YES  |         |         |                |
+| number     | int(11)      | YES  |         |         |                |
+| title      | varchar(255) |      |         |         |                |
+| detail     | text         |      |         |         |                |
+| duration   | time         |      |         |         |                |
+| view_count | int(11)      |      |         | 0       |                |
+
+- 外部キー制約： season_id に対して、 seasons テーブルの id カラムから設定
+
+### [genres テーブル]
+テーブル名： genres
+| COLUMN | DATA TYPE    | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ------ | ------------ | ---- | ------- | ------- | -------------- |
+| id     | bigint(20)   |      | PRIMARY |         | YES            |
+| name   | varchar(255) |      |         |         |                |
+
 
 ## ステップ2
 
