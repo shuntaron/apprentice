@@ -61,9 +61,10 @@
 
 </details>
 
-<details open>
 
 ### エンティティ
+<details open>
+
 - チャンネル
 - 番組
 - ジャンル
@@ -114,15 +115,15 @@ erDiagram
     view_count      bigint(20)      
   }
 
+  Genre {
+    id              bigint(20)    PK
+    name            varchar(255)    
+  }
+
   ProgramGenre {
     id              bigint(20)    PK
     program_id      bigint(20)    FK
     genre_id        bigint(20)    FK
-  }
-
-  Genre {
-    id              bigint(20)    PK
-    name            varchar(255)    
   }
 ```
 
@@ -177,6 +178,13 @@ erDiagram
 
 - 外部キー制約： season_id に対して、 seasons テーブルの id カラムから設定
 
+### [genres テーブル]
+テーブル名： genres
+| COLUMN | DATA TYPE    | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ------ | ------------ | ---- | ------- | ------- | -------------- |
+| id     | bigint(20)   |      | PRIMARY |         | YES            |
+| name   | varchar(255) |      |         |         |                |
+
 ### [program - genres テーブル]
 テーブル名： program_genres
 | COLUMN     | DATA TYPE  | NULL | KEY     | DEFAULT | AUTO INCREMENT |
@@ -187,13 +195,6 @@ erDiagram
 
 - 外部キー制約： program_id に対して、 programs テーブルの id カラムから設定
 - 外部キー制約： genres_id に対して、 genres テーブルの id カラムから設定
-
-### [genres テーブル]
-テーブル名： genres
-| COLUMN | DATA TYPE    | NULL | KEY     | DEFAULT | AUTO INCREMENT |
-| ------ | ------------ | ---- | ------- | ------- | -------------- |
-| id     | bigint(20)   |      | PRIMARY |         | YES            |
-| name   | varchar(255) |      |         |         |                |
 
 </details>
 
@@ -260,11 +261,6 @@ CREATE TABLE episodes (
   REFERENCES      seasons(id)                        
 );
 
-CREATE TABLE genres (
-  id              BIGINT(20)    NOT NULL PRIMARY KEY,
-  name            VARCHAR(255)  NOT NULL             
-);
-
 CREATE TABLE program_genres (
   id              BIGINT(20)    NOT NULL PRIMARY KEY,
   program_id      BIGINT(20)                        ,
@@ -274,6 +270,11 @@ CREATE TABLE program_genres (
   FOREIGN KEY     fk_genre_id(genre_id)              
   REFERENCES      genres(id)                         
 );
+
+CREATE TABLE genres (
+  id              BIGINT(20)    NOT NULL PRIMARY KEY,
+  name            VARCHAR(255)  NOT NULL             
+);
 ```
 
 </details>
@@ -282,7 +283,53 @@ CREATE TABLE program_genres (
 
 
 ```sql
+-- channels table
+INSERT INTO channels (id, name) VALUES
+(1, 'TV Asahi'),
+(2, 'Nippon TV'),
+(3, 'TBS'),
+(4, 'Fuji TV'),
+(5, 'TV Tokyo');
 
+-- programs table
+INSERT INTO programs (id, channel_id, title, detail, start_time, end_time) VALUES
+(1, 1, 'News Program', 'Morning news', '2023-05-30 07:00:00', '2023-05-30 07:30:00'),
+(2, 2, 'Drama', 'Latest episode of popular drama', '2023-05-30 21:00:00', '2023-05-30 22:00:00'),
+(3, 3, 'Variety Show', 'Festival of laughter', '2023-05-31 18:00:00', '2023-05-31 19:00:00'),
+(4, 4, 'Sports Coverage', 'Baseball game', '2023-06-01 14:00:00', '2023-06-01 17:00:00'),
+(5, 5, 'Documentary Program', 'Wonders of the natural world', '2023-06-02 20:00:00', '2023-06-02 21:30:00');
+
+-- seasons table
+INSERT INTO seasons (id, program_id, number, name) VALUES
+(1, 2, 1, 'Season 1'),
+(2, 2, 2, 'Season 2'),
+(3, 3, 1, 'Season 1'),
+(4, 4, 3, 'Season 3'),
+(5, 5, 1, 'Season 1');
+
+-- episodes table
+INSERT INTO episodes (id, season_id, number, title, detail, duration, release_date, view_count) VALUES
+(1, 1, 1, 'First Episode', 'Episode 1 of the drama', '00:45:00', '2023-06-01', 100),
+(2, 1, 2, 'Next Episode', 'Episode 2 of the drama', '00:45:00', '2023-06-08', 150),
+(3, 2, 1, 'First Episode of Season 2', 'Episode 1 of the drama', '00:45:00', '2023-06-15', 80),
+(4, 3, 1, 'Variety Show Episode 1', 'Compilation of funny moments', '00:30:00', '2023-05-31', 200),
+(5, 4, 1, 'Sports Coverage Episode 1', 'Highlights of the game', '03:00:00', '2023-06-01', 120);
+
+-- genres table
+INSERT INTO genres (id, name) VALUES
+(1, 'Drama'),
+(2, 'Sports'),
+(3, 'Variety'),
+(4, 'News'),
+(5, 'Documentary');
+
+-- program_genres table
+INSERT INTO program_genres (id, program_id, genre_id) VALUES
+(1, 2, 1),
+(2, 2, 3),
+(3, 3, 4),
+(4, 4, 2),
+(5, 5, 5);
 ```
 
 ## ステップ3
@@ -300,14 +347,12 @@ ORDER BY view_count DESC
 
 2. よく見られているエピソードの番組情報やシーズン情報も合わせて知りたいです。エピソード視聴数トップ3の番組タイトル、シーズン数、エピソード数、エピソードタイトル、視聴数を取得してください
 ```sql
-    SELECT pg.title, s.number, e.number, e.title, e.view_count
+    SELECT p.title, s.number, e.number, e.title, e.view_count
       FROM episodes e
 INNER JOIN seasons s
         ON e.season_id = s.id
-INNER JOIN program_episodes pe
-        ON e.id = pe.episode_id
-INNER JOIN programs pg
-        ON pe.program_id = pg.id
+INNER JOIN programs p
+        ON s.program_id = p.id
   ORDER BY e.view_count DESC
      LIMIT 3;
 ```
