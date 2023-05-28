@@ -4,7 +4,7 @@
 [ABEMA](https://abema.tv/)のような「インターネットTVサービス」のデータベース設計を行う  
 
 ## 仕様
-<details>
+<details open>
 
 - 複数のチャンネルがある
 - 各チャンネルに時間帯ごとに番組枠が設定されている
@@ -41,7 +41,7 @@
   - エピソード：1話、2話、...、26話
 
 ## ステップ1
-<details>
+<details open>
 
 データベース設計をする  
 テーブルごとに以下を定義する
@@ -58,6 +58,10 @@
 以下のポイントを抑えること
 - アプリケーションとして成立すること(プログラムを組んだ際に仕様を満たして動作すること)
 - 正規化されていること
+
+</details>
+
+<details open>
 
 ### エンティティ
 - チャンネル
@@ -125,7 +129,7 @@ erDiagram
 </details>
 
 ### テーブル定義
-<details>
+<details open>
 
 ### [channels テーブル]
 テーブル名： channels
@@ -194,7 +198,7 @@ erDiagram
 </details>
 
 ## ステップ2
-<details>
+<details open>
 
 実際にテーブルを構築し、データを格納する  
 手順をドキュメント化する  
@@ -282,7 +286,7 @@ CREATE TABLE program_genres (
 ```
 
 ## ステップ3
-<details>
+<details open>
 
 以下のデータを抽出するクエリを作成する  
 
