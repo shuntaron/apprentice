@@ -40,7 +40,7 @@
 EC サイトの ER 図を、テーブル定義する  
 
 ### アウトプット例
-テーブル：users
+テーブル： users
 |カラム名|データ型|NULL|キー|初期値|AUTO INCREMENT|
 | ---- | ---- | ---- | ---- | ---- | ---- |
 |id|bigint(20)||PRIMARY||YES|
@@ -49,61 +49,60 @@ EC サイトの ER 図を、テーブル定義する
 
 - ユニークキー制約：email カラムに対して設定
 
-テーブル：comments
-
+テーブル： comments
 |カラム名|データ型|NULL|キー|初期値|AUTO INCREMENT|
 | ---- | ---- | ---- | ---- | ---- | ---- |
 |id|bigint(20)||PRIMARY||YES|
 |user_id|bigint(20)|YES|INDEX|0||
 |content|text|||||
 
-- 外部キー制約：user_id に対して、users テーブルの id カラムから設定
+- 外部キー制約： user_id に対して、 users テーブルの id カラムから設定
 
 ### 解答
 
 ### [購入テーブル]
-テーブル：purchases
-| カラム名          | データ型       | NULL | キー      | 初期値 | AUTO INCREMENT |
-| ------------- | ---------- | ---- | ------- | --- | -------------- |
-| id            | bigint(20) |      | PRIMARY |     | YES            |
-| purchase_date | date       |      |         |     |                |
-| user_id       | int(11)    | YES  |         |     |                |
+テーブル： purchases
+| COLUMN        | DATA TYPE  | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ------------- | ---------- | ---- | ------- | ------- | -------------- |
+| id            | bigint(20) |      | PRIMARY |         | YES            |
+| purchase_date | date       |      |         |         |                |
+| user_id       | bigint(20) | YES  |         |         |                |
 
-- 外部キー制約：user_id に対して、users テーブルの id カラムから設定
+- 外部キー制約： user_id に対して、 users テーブルの id カラムから設定
 
 ### [ユーザーテーブル]
-テーブル名：users
-| カラム名 | データ型         | NULL | キー      | 初期値 | AUTO INCREMENT |
-| ---- | ------------ | ---- | ------- | --- | -------------- |
-| id   | bigint(20)   |      | PRIMARY |     | YES            |
-| name | varchar(255) |      |         |     |                |
+テーブル名： users
+| COLUMN | DATA TYPE    | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ------ | ------------ | ---- | ------- | ------- | -------------- |
+| id     | bigint(20)   |      | PRIMARY |         | YES            |
+| name   | varchar(255) |      |         |         |                |
 
 
 ### [購入商品テーブル]
-テーブル名：purchase_products
-| カラム名        | データ型       | NULL | キー      | 初期値 | AUTO INCREMENT |
-| ----------- | ---------- | ---- | ------- | --- | -------------- |
-| id          | bigint(20) |      | PRIMARY |     | YES            |
-| purchase_id | int(11)    | YES  |         |     |                |
-| product_id  | int(11)    | YES  |         |     |                |
+テーブル名： purchase_products
+| COLUMN      | DATA TYPE  | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ----------- | ---------- | ---- | ------- | ------- | -------------- |
+| id          | bigint(20) |      | PRIMARY |         | YES            |
+| purchase_id | bigint(20) | YES  |         |         |                |
+| product_id  | bigint(20) | YES  |         |         |                |
 
-- 外部キー制約：purchase_id に対して、purchases テーブルの id カラムから設定
-- 外部キー制約：product_id に対して、products テーブルの id カラムから設定
+- 外部キー制約： purchase_id に対して、 purchases テーブルの id カラムから設定
+- 外部キー制約： product_id に対して、 products テーブルの id カラムから設定
 
 ### [商品テーブル]
-テーブル名：products
-| カラム名        | データ型       | NULL | キー      | 初期値 | AUTO INCREMENT |
-| ----------- | ---------- | ---- | ------- | --- | -------------- |
-| id          | bigint(20) |      | PRIMARY |     | YES            |
-| name        | date       |      |         |     |                |
-| price       | int(11)    |      |         |     |                |
-| category_id | int(11)    | YES  |         |     |                |
+テーブル名： products
+| COLUMN      | DATA TYPE  | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ----------- | ---------- | ---- | ------- | ------- | -------------- |
+| id          | bigint(20) |      | PRIMARY |         | YES            |
+| name        | date       |      |         |         |                |
+| price       | bigint(20) |      |         |         |                |
+| category_id | bigint(20) | YES  |         |         |                |
 
-- 外部キー制約：category_id に対して、category テーブルの id カラムから設定
+- 外部キー制約： category_id に対して、 category テーブルの id カラムから設定
 
 ### [カテゴリーテーブル]
-テーブル名：categories
-| カラム名 | データ型         | NULL | キー      | 初期値 | AUTO INCREMENT |
-| ---- | ------------ | ---- | ------- | --- | -------------- |
-| id   | bigint(20)   |      | PRIMARY |     | YES            |
-| name | varchar(255) |      |         |     |                |
+テーブル名： categories
+| COLUMN | DATA TYPE    | NULL | KEY     | DEFAULT | AUTO INCREMENT |
+| ------ | ------------ | ---- | ------- | ------- | -------------- |
+| id     | bigint(20)   |      | PRIMARY |         | YES            |
+| name   | varchar(255) |      |         |         |                |
