@@ -261,6 +261,11 @@ CREATE TABLE episodes (
   REFERENCES      seasons(id)                        
 );
 
+CREATE TABLE genres (
+  id              BIGINT(20)    NOT NULL PRIMARY KEY,
+  name            VARCHAR(255)  NOT NULL             
+);
+
 CREATE TABLE program_genres (
   id              BIGINT(20)    NOT NULL PRIMARY KEY,
   program_id      BIGINT(20)                        ,
@@ -270,17 +275,11 @@ CREATE TABLE program_genres (
   FOREIGN KEY     fk_genre_id(genre_id)              
   REFERENCES      genres(id)                         
 );
-
-CREATE TABLE genres (
-  id              BIGINT(20)    NOT NULL PRIMARY KEY,
-  name            VARCHAR(255)  NOT NULL             
-);
 ```
 
 </details>
 
 3. サンプルデータ格納
-
 
 ```sql
 -- channels table
@@ -289,7 +288,8 @@ INSERT INTO channels (id, name) VALUES
 (2, 'Nippon TV'),
 (3, 'TBS'),
 (4, 'Fuji TV'),
-(5, 'TV Tokyo');
+(5, 'TV Tokyo'),
+(6, 'Drama');
 
 -- programs table
 INSERT INTO programs (id, channel_id, title, detail, start_time, end_time) VALUES
@@ -297,7 +297,14 @@ INSERT INTO programs (id, channel_id, title, detail, start_time, end_time) VALUE
 (2, 2, 'Drama', 'Latest episode of popular drama', '2023-05-30 21:00:00', '2023-05-30 22:00:00'),
 (3, 3, 'Variety Show', 'Festival of laughter', '2023-05-31 18:00:00', '2023-05-31 19:00:00'),
 (4, 4, 'Sports Coverage', 'Baseball game', '2023-06-01 14:00:00', '2023-06-01 17:00:00'),
-(5, 5, 'Documentary Program', 'Wonders of the natural world', '2023-06-02 20:00:00', '2023-06-02 21:30:00');
+(5, 5, 'Documentary Program', 'Wonders of the natural world', '2023-06-02 20:00:00', '2023-06-02 21:30:00'),
+(6, 6, 'Drama 1', 'Drama 1', '2023-05-28 20:00:00', '2023-05-28 21:00:00'),
+(7, 6, 'Drama 2', 'Drama 2', '2023-05-29 20:00:00', '2023-05-29 21:00:00'),
+(8, 6, 'Drama 3', 'Drama 3', '2023-05-30 20:00:00', '2023-05-30 21:00:00'),
+(9, 6, 'Drama 4', 'Drama 4', '2023-05-31 20:00:00', '2023-05-31 21:00:00'),
+(10, 6, 'Drama 5', 'Drama 5', '2023-06-01 20:00:00', '2023-06-01 21:00:00'),
+(11, 6, 'Drama 6', 'Drama 6', '2023-06-02 20:00:00', '2023-06-02 21:00:00'),
+(12, 6, 'Drama 7', 'Drama 7', '2023-06-03 20:00:00', '2023-06-03 21:00:00');
 
 -- seasons table
 INSERT INTO seasons (id, program_id, number, name) VALUES
@@ -305,7 +312,14 @@ INSERT INTO seasons (id, program_id, number, name) VALUES
 (2, 2, 2, 'Season 2'),
 (3, 3, 1, 'Season 1'),
 (4, 4, 3, 'Season 3'),
-(5, 5, 1, 'Season 1');
+(5, 5, 1, 'Season 1'),
+(6, 6, 1, 'Season 1'),
+(7, 7, 1, 'Season 1'),
+(8, 8, 1, 'Season 1'),
+(9, 9, 1, 'Season 1'),
+(10, 10, 1, 'Season 1'),
+(11, 11, 1, 'Season 1'),
+(12, 12, 1, 'Season 1');
 
 -- episodes table
 INSERT INTO episodes (id, season_id, number, title, detail, duration, release_date, view_count) VALUES
@@ -313,7 +327,14 @@ INSERT INTO episodes (id, season_id, number, title, detail, duration, release_da
 (2, 1, 2, 'Next Episode', 'Episode 2 of the drama', '00:45:00', '2023-06-08', 150),
 (3, 2, 1, 'First Episode of Season 2', 'Episode 1 of the drama', '00:45:00', '2023-06-15', 80),
 (4, 3, 1, 'Variety Show Episode 1', 'Compilation of funny moments', '00:30:00', '2023-05-31', 200),
-(5, 4, 1, 'Sports Coverage Episode 1', 'Highlights of the game', '03:00:00', '2023-06-01', 120);
+(5, 4, 1, 'Sports Coverage Episode 1', 'Highlights of the game', '03:00:00', '2023-06-01', 120),
+(6, 6, 1, 'Drama 1', 'Drama 1', '01:00:00', '2023-05-28', 101),
+(7, 7, 2, 'Drama 2', 'Drama 2', '01:00:00', '2023-05-29', 102),
+(8, 8, 3, 'Drama 3', 'Drama 3', '01:00:00', '2023-05-30', 103),
+(9, 9, 4, 'Drama 4', 'Drama 4', '01:00:00', '2023-05-31', 104),
+(10, 10, 5, 'Drama 5', 'Drama 5', '01:00:00', '2023-06-01', 105),
+(11, 11, 6, 'Drama 6', 'Drama 6', '01:00:00', '2023-06-02', 106),
+(12, 12, 7, 'Drama 7', 'Drama 7', '01:00:00', '2023-06-03', 107);
 
 -- genres table
 INSERT INTO genres (id, name) VALUES
@@ -329,7 +350,14 @@ INSERT INTO program_genres (id, program_id, genre_id) VALUES
 (2, 2, 3),
 (3, 3, 4),
 (4, 4, 2),
-(5, 5, 5);
+(5, 5, 5),
+(6, 6, 1),
+(7, 7, 1),
+(8, 8, 1),
+(9, 9, 1),
+(10, 10, 1),
+(11, 11, 1),
+(12, 12, 1);
 ```
 
 ## ステップ3
@@ -376,13 +404,27 @@ INNER JOIN seasons  s
 INNER JOIN programs p
         ON s.program_id = p.id
 INNER JOIN channels c
-        ON s.program_id = c.id
-     WHERE DATE_FORMAT(p.start_time, '%Y-%m-%d') = CURRENT_DATE();
+        ON p.channel_id = c.id
+     WHERE DATE_FORMAT(p.start_time, '%Y-%m-%d') = CURDATE();
 ```
 
 4. ドラマというチャンネルがあったとして、ドラマのチャンネルの番組表を表示するために、本日から一週間分、何日の何時から何の番組が放送されるのかを知りたいです。
    ドラマのチャンネルに対して、放送開始時刻、放送終了時刻、シーズン数、エピソード数、エピソードタイトル、エピソード詳細を本日から一週間分取得してください
 
+```sql
+    SELECT p.start_time, p.end_time, s.number, e.number, e.title, e.detail
+      FROM episodes e
+INNER JOIN seasons  s
+        ON e.season_id  = s.id
+INNER JOIN programs p
+        ON s.program_id = p.id
+INNER JOIN channels c
+        ON p.channel_id = c.id
+     WHERE c.name = 'Drama'
+       AND DATE_FORMAT(p.start_time, '%Y-%m-%d')
+   BETWEEN CURDATE()
+       AND CURDATE() + INTERVAL 7 DAY;
+```
 
 5. (advanced) 直近一週間で最も見られた番組が知りたいです。直近一週間に放送された番組の中で、エピソード視聴数合計トップ2の番組に対して、番組タイトル、視聴数を取得してください
 6. (advanced) ジャンルごとの番組の視聴数ランキングを知りたいです。番組の視聴数ランキングはエピソードの平均視聴数ランキングとします。ジャンルごとに視聴数トップの番組に対して、ジャンル名、番組タイトル、エピソード平均視聴数を取得してください。
