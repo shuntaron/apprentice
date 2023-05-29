@@ -349,7 +349,7 @@ ORDER BY view_count DESC
 ```sql
     SELECT p.title, s.number, e.number, e.title, e.view_count
       FROM episodes e
-INNER JOIN seasons s
+INNER JOIN seasons  s
         ON e.season_id = s.id
 INNER JOIN programs p
         ON s.program_id = p.id
@@ -367,6 +367,18 @@ INNER JOIN programs p
     - エピソード数
     - エピソードタイトル
     - エピソード詳細
+
+```sql
+    SELECT c.name, p.start_time, p.end_time, s.number, e.number, e.title, e.detail
+      FROM episodes e
+INNER JOIN seasons  s
+        ON e.season_id  = s.id
+INNER JOIN programs p
+        ON s.program_id = p.id
+INNER JOIN channels c
+        ON s.program_id = c.id
+     WHERE DATE_FORMAT(p.start_time, '%Y-%m-%d') = CURRENT_DATE();
+```
 
 4. ドラマというチャンネルがあったとして、ドラマのチャンネルの番組表を表示するために、本日から一週間分、何日の何時から何の番組が放送されるのかを知りたいです。
    ドラマのチャンネルに対して、放送開始時刻、放送終了時刻、シーズン数、エピソード数、エピソードタイトル、エピソード詳細を本日から一週間分取得してください
