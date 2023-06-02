@@ -57,3 +57,22 @@ odd("hoge")
 ### 3. 2乗の計算
 
 整数の配列 numbers を受け取り、各要素を2乗した配列を返す関数 square を実装
+
+```js
+function square(numbers) {
+  let square_numbers = [];
+  if (Array.isArray(numbers) === false) {
+    console.log(numbers + ": Invalid input");
+    return;
+  }
+  
+  for (let i = 0; i < numbers.length; i++) {
+    square_numbers.push(numbers[i] * numbers[i]);
+  }
+  console.log(square_numbers);
+}
+
+square([1, 2, 3, 4, 5])
+square(1)
+square("hoge")
+```
