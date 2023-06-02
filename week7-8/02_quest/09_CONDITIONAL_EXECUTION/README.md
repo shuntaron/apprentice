@@ -1,4 +1,4 @@
-# 条件分岐を使うことができる
+# 条件分岐
 
 ## 1. 温度チェッカー
 
@@ -25,3 +25,22 @@ checkTemperature(14)
 ```
 
 ## 2. 偶数チェッカー
+整数 n が偶数か奇数かを判定する関数 checkOddOrEven を定義
+
+```javascript
+function checkOddOrEven(n) {
+  if (n % 2 === 0) {
+    console.log("Even");
+  } else if (n % 2 === 1) {
+    console.log("Odd");
+  } else {
+    console.log("Unable to check");
+  }
+}
+
+checkOddOrEven(2)
+checkOddOrEven(1)
+checkOddOrEven(0)
+checkOddOrEven("hoge")
+checkOddOrEven(0.1)
+```
