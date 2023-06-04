@@ -26,6 +26,21 @@
 ```
 
 ### 1. DOM とは
+DOM とは Document Object Model の略で HTML のような文書の構造をメモリー内に表現することで、ウェブページとスクリプトやプログラミング言語を接続するもの  
+以前は W3C によって標準化が行われていたが、現在は WHATWG によって標準化が行われている  
+
+DOM は文書を論理的なツリーで表現し、ツリーのそれぞれの枝はノードで終わっており、それぞれのノードがオブジェクトを含んでいる  
+DOM のメソッドでプログラム的にツリーにアクセスすることができ、  
+これにより、文書構造やスタイルやコンテンツを変更することができる  
+
+DOM にアクセスするために DOM API がある  
+DOM APIは、Webブラウザが提供するAPIの一部であり、DOMにアクセスするための機能を提供する  
+
+API とは、Application Programming Interface の略で、ソフトウェアやプログラム、Webサービスの間をつなぐインターフェースを指し、API を使うことで外部のアプリケーションと機能を共有することができる  
+
+https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model
+
+https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction
 
 ### 2. 要素ノードの変更
 
