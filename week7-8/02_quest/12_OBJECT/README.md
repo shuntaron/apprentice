@@ -85,9 +85,13 @@ checkPermission("田中", "canDelete")
 JavaScript ではオブジェクトのプロパティが関数である場合、それをメソッドと呼ぶ  
 メソッドの定義として正しいものを全て選択する  
 
-1. 
+1: 通常関数（Regular function）  
+2: アロー関数（Arrow function）  
+3: 通常関数の短縮記法（Method shorthand）  
+4: 構文エラー  
 
-<details opened>
+1. 通常関数（Regular function）
+<details open>
 
 ```js
 const obj = {
@@ -101,8 +105,7 @@ obj.method();
 
 </details>
 
-2. 
-
+2. アロー関数（Arrow function）
 <details open>
 
 ```js
@@ -117,8 +120,7 @@ obj.method();
 
 </details>
 
-3. 
-
+3. 通常関数の短縮記法（Method shorthand）  
   <details open>
 
   ```js
@@ -133,7 +135,7 @@ obj.method();
 
   </details>
 
-4.
+4. 構文エラー
   <details open>
 
   ```js
