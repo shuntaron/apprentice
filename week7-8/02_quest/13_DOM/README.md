@@ -43,6 +43,8 @@ https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model
 https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction
 
 ### 2. 要素ノードの変更
+JavaScript を使って、h1 タグのテキストを「シンプルブログ」へ変更する
+
 
 ### 3. イベントハンドラの設定
 
