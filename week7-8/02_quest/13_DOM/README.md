@@ -57,7 +57,7 @@ JavaScript を使って、フォームの送信ボタンをクリックしたと
 window.addEventListener('DOMContentLoaded', function() {
 
   // formの要素を取得
-  let form = document.getElementById("post-form");
+  const form = document.getElementById("post-form");
   
   // formのsubmitイベントのイベントハンドラを登録
   form.addEventListener("submit", function(e) {
@@ -69,13 +69,53 @@ window.addEventListener('DOMContentLoaded', function() {
     let content = document.getElementById("content").value;
     
     // タイトルと本文の値をコンソールに出力
-    console.log(`タイトル: ${title}`);
-    console.log(`本文: ${content}`);
+    console.log(`タイトル： ${title}`);
+    console.log(`本文： ${content}`);
   });
 });
 ```
 
 ### 4. 要素ノードの追加
+JavaScript を使って、フォームの送信ボタンをクリックしたときに、フォームの内容を `#posts` の div タブ内に、以下の形式で表示する
+
+```html
+<div id="posts">
+  <h2>入力されたタイトル</h2>
+  <p>入力された本文</p>
+</div>
+```
+
+```js
+// ページ読み込み時のイベントハンドラを登録
+window.addEventListener('DOMContentLoaded', function() {
+
+  // formの要素を取得
+  const form = document.getElementById("post-form");
+
+  // #postsの要素を取得し、変数postsに代入
+  const posts = document.getElementById("posts");
+  
+  // formのsubmitイベントのイベントハンドラを登録
+  form.addEventListener("submit", function(e) {
+    // EventオブジェクトのpreventDefaultメソッドをキャンセルし、フォーム送信を無効化
+    e.preventDefault();
+  
+    // タイトルと本文の値を取得
+    let title = document.getElementById("title").value;
+    let content = document.getElementById("content").value;
+    
+    // タイトルと本文の値をコンソールに出力
+    console.log(`タイトル： ${title}`);
+    console.log(`本文： ${content}`);
+    
+    // タイトルと本文の値を#postsの要素に追加
+    posts.innerHTML = `
+        <h2>${title}</h2>
+        <p>${content}</p>
+    `;
+  });
+});
+```
 
 ### 5. 要素ノードの追加
 
