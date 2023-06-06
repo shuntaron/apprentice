@@ -45,8 +45,35 @@ https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction
 ### 2. 要素ノードの変更
 JavaScript を使って、h1 タグのテキストを「シンプルブログ」へ変更する
 
+```js
+document.querySelector("body > h1").innerHTML = "シンプルブログ"
+```
 
 ### 3. イベントハンドラの設定
+JavaScript を使って、フォームの送信ボタンをクリックしたときに、フォームに入力された内容（タイトルと本文）をコンソールに出力する
+
+```js
+// ページ読み込み時のイベントハンドラを登録
+window.addEventListener('DOMContentLoaded', function() {
+
+  // formの要素を取得
+  let form = document.getElementById("post-form");
+  
+  // formのsubmitイベントのイベントハンドラを登録
+  form.addEventListener("submit", function(e) {
+    // EventオブジェクトのpreventDefaultメソッドをキャンセルし、フォーム送信を無効化
+    e.preventDefault();
+    
+    // タイトルと本文の値を取得
+    let title = document.getElementById("title").value;
+    let content = document.getElementById("content").value;
+    
+    // タイトルと本文の値をコンソールに出力
+    console.log(`タイトル: ${title}`);
+    console.log(`本文: ${content}`);
+  });
+});
+```
 
 ### 4. 要素ノードの追加
 
