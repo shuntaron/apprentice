@@ -147,3 +147,27 @@ posts.addEventListener("mouseout", function() {
 ```
 
 ### 7. 要素ノードの削除
+フォームの投稿が増え、`#posts` の div タグ内に表示される投稿が多くなってきたとする  
+このとき `#posts` の div タグ内に追加された投稿の数が3つを超えた場合、一番古い投稿を削除する  
+なお、4. で作成した投稿の表示形式は変更して構わない  
+
+```js
+// #postsの要素を取得し、変数postsに代入
+const posts = document.getElementById("posts");
+
+// タイトルと本文の値を#postsの要素に追加
+posts.innerHTML += `
+    <h2>${title}</h2>
+    <p>${content}</p>
+`;
+
+// h2タグの数が3つを超えた場合、一番古いh2タグを削除
+if (posts.querySelectorAll("h2").length > 3) {
+  posts.removeChild(posts.querySelector("h2:first-of-type"));
+}
+
+// pタグの数が3つを超えた場合、一番古いpタグを削除
+if (posts.querySelectorAll("p").length > 3) {
+  posts.removeChild(posts.querySelector("p:first-of-type"));
+}
+```
