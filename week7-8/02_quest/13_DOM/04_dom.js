@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', function() {
     console.log(`本文： ${content}`);
     
     // タイトルと本文の値を#postsの要素に追加
-    posts.innerHTML = `
+    posts.innerHTML += `
         <h2>${title}</h2>
         <p>${content}</p>
     `;

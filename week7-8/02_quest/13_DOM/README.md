@@ -76,7 +76,7 @@ window.addEventListener('DOMContentLoaded', function() {
 ```
 
 ### 4. 要素ノードの追加
-JavaScript を使って、フォームの送信ボタンをクリックしたときに、フォームの内容を `#posts` の div タブ内に、以下の形式で表示する
+JavaScript を使って、フォームの送信ボタンをクリックしたときに、フォームの内容を `#posts` の div タグ内に、以下の形式で表示する
 
 ```html
 <div id="posts">
@@ -131,5 +131,19 @@ document.getElementById("content").value = "";
 ```
 
 ### 6. スタイルの変更
+JavaScript を使って、`#posts` の div タグ上にマウスポインターを乗せたタイミングで背景色を黄色に、マウスポインターを外したタイミングで白色に変更する
+
+```js
+// #postsの要素を取得し、変数postsに代入
+const posts = document.getElementById("posts");
+
+// #postsの要素にマウスが乗った時のイベントハンドラを登録
+posts.addEventListener("mouseover", function() {
+  this.style.backgroundColor = "yellow";
+});
+posts.addEventListener("mouseout", function() {
+  this.style.backgroundColor = "white";
+});
+```
 
 ### 7. 要素ノードの削除

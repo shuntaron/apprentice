@@ -34,4 +34,13 @@ window.addEventListener('DOMContentLoaded', function() {
     // フォームの値をリセット
     // form.reset();
   });
+  
+  // #postsの要素にマウスが乗った時のイベントハンドラを登録
+  posts.addEventListener("mouseover", function() {
+    this.style.backgroundColor = "yellow";
+  });
+  posts.addEventListener("mouseout", function() {
+    this.style.backgroundColor = "white";
+  });
 });
+
