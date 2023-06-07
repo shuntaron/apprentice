@@ -118,6 +118,17 @@ window.addEventListener('DOMContentLoaded', function() {
 ```
 
 ### 5. 要素ノードの追加
+JavaScript を使って、フォームの送信ボタンをクリックしたときに、フォームの中身を空にする  
+
+```js
+// タイトルと本文の値を空文字にする
+document.getElementById("title").value = "";
+document.getElementById("content").value = "";
+
+// タイトルと本文の値を空文字にする（他の方法）
+// フォームの値をリセット
+// form.reset();
+```
 
 ### 6. スタイルの変更
 
