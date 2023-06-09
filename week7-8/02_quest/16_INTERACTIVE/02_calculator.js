@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', function() {
   
   // click イベントのイベントハンドラを登録
   document.addEventListener("click", function (e) {
-    // クリックされた要素のクラス名が digit の場合
+    // クリックされた要素の class 名が digit の場合
     if (e.target.classList.contains("digit")) {
       // クリックされた要素のテキストを取得
       let digit = e.target.textContent;
@@ -21,16 +21,29 @@ window.addEventListener('DOMContentLoaded', function() {
       document.getElementById("display").innerText += digit;
     }
     
-    // クリックされた要素のクラス名が operator の場合
+    // クリックされた要素の class 名が operator の場合
     if (e.target.classList.contains("operator")) {
       // display の値を取得
       let display = document.getElementById("display").innerText;
-      // display に数字が入力されている場合
+      // display の末尾に数字が入力されている場合
       if (isNumericEnd(display)) {
         // クリックされた要素のテキストを取得
         let digit = e.target.textContent;
         // テキストフィールドの値にクリックされた要素のテキストを追加
         document.getElementById("display").innerText += digit;
+      }
+    }
+    
+    // クリックされた要素の id 名が equals の場合
+    if (e.target.id === "equals") {
+      // display の値を取得
+      let display = document.getElementById("display").innerText;
+      // display の末尾に数字が入力されている場合
+      if (isNumericEnd(display)) {
+        // display の値を計算
+        result = eval(display);
+        // display の値を計算結果に変更
+        document.getElementById("display").innerText = result;
       }
     }
   });
