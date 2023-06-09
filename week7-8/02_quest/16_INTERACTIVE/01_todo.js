@@ -30,4 +30,23 @@ window.addEventListener('DOMContentLoaded', function() {
     // タイトルと本文の値を空文字にする
     document.getElementById("todo-input").value = "";
   });
+  
+  // click イベントのイベントハンドラを登録
+  document.addEventListener("click", function (e) {
+    
+    // クリックした要素が削除ボタンの場合
+    if (e.target.classList.contains("delete-button")) {
+      // 削除ボタンを押した要素を取得
+      let delete_button = e.target;
+      
+      // 削除ボタンを押した要素の親要素を取得
+      let todo_item = delete_button.parentElement;
+      
+      // 削除ボタンを押した要素の親要素の親要素を取得
+      let todo_list = todo_item.parentElement;
+      
+      // 削除ボタンを押した要素の親要素の親要素から削除
+      todo_list.removeChild(todo_item);
+    }
+  });
 });
