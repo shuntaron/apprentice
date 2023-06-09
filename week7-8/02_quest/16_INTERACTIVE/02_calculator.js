@@ -46,5 +46,11 @@ window.addEventListener('DOMContentLoaded', function() {
         document.getElementById("display").innerText = result;
       }
     }
+    
+    // クリックされた要素の id 名が clear の場合
+    if (e.target.id === "clear") {
+      // display の値をクリア
+      document.getElementById("display").innerText = "";
+    }
   });
 });
