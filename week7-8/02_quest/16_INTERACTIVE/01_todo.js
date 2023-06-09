@@ -34,19 +34,38 @@ window.addEventListener('DOMContentLoaded', function() {
   // click イベントのイベントハンドラを登録
   document.addEventListener("click", function (e) {
     
-    // クリックした要素が削除ボタンの場合
+    // クリックされた要素が削除ボタンの場合
     if (e.target.classList.contains("delete-button")) {
-      // 削除ボタンを押した要素を取得
+      // 削除ボタンが押された要素を取得
       let delete_button = e.target;
       
-      // 削除ボタンを押した要素の親要素を取得
+      // 削除ボタンが押された要素の親要素を取得
       let todo_item = delete_button.parentElement;
       
-      // 削除ボタンを押した要素の親要素の親要素を取得
+      // 削除ボタンが押された要素の親要素の親要素を取得
       let todo_list = todo_item.parentElement;
       
-      // 削除ボタンを押した要素の親要素の親要素から削除
+      // 削除ボタンが押された要素の親要素の親要素から削除
       todo_list.removeChild(todo_item);
+    }
+  });
+  
+  // change イベントのイベントハンドラを登録
+  document.addEventListener("change", function (e) {
+    // クリックされた要素がチェックボックスの場合
+    if (e.target.type === "checkbox") {
+      // チェックボックスが押された要素を取得
+      let checkbox = e.target;
+      
+      // チェックボックスが押された要素の親要素を取得
+      let todo_item = checkbox.parentElement;
+      
+      // todo_item の子要素に取り消し線を追加
+      if (checkbox.checked) {
+        todo_item.querySelector("span").style.textDecoration = "line-through";
+      } else {
+        todo_item.querySelector("span").style.textDecoration = "none";
+      }
     }
   });
 });
