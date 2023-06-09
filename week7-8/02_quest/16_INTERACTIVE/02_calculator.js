@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', function() {
       // クリックされた要素のテキストを取得
       let digit = e.target.textContent;
       // テキストフィールドの値にクリックされた要素のテキストを追加
-      document.getElementById("display").innerText = digit;
+      document.getElementById("display").innerText += digit;
     }
   });
   
