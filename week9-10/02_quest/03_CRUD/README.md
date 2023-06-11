@@ -23,8 +23,17 @@ https://docs.docker.jp/compose/rails.html
 # プロジェクトのビルド
 $ docker-compose run web rails new . --force --database=postgresql
 
+# Gemfile に以下追記
+gem "dotenv-rails"
+
 # 新たな Gemfile が作成されたので、イメージを再ビルド
 $ docker-compose build
+
+# config/database.yml を修正
+# [database.yml](./template/config/database.yml)
+
+# データベースを生成
+$ docker-compose run web rake db:create
 
 # アプリ起動
 $ docker-compose up

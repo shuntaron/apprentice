@@ -97,7 +97,6 @@ development:
   <<: *default
   database: todo_app_development
 
-
 test:
   <<: *default
   database: todo_app_test
