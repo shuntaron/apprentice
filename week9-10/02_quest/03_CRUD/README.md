@@ -25,6 +25,9 @@ $ docker-compose run web rails new . --force --database=postgresql
 
 # 新たな Gemfile が作成されたので、イメージを再ビルド
 $ docker-compose build
+
+# アプリ起動
+$ docker-compose up
 ```
 
 ### 2. テーブルの作成
