@@ -33,13 +33,28 @@ $ docker-compose build
 # [database.yml](./template/config/database.yml)
 
 # データベースを生成
-$ docker-compose run web rake db:create
+$ docker-compose run web rails db:create
 
 # アプリ起動
 $ docker-compose up
 ```
 
 ### 2. テーブルの作成
+テーブルを作成する  
+
+### [todos テーブル]
+テーブル名： todos
+| カラム        | 内容       |
+| ---------- | -------- |
+| id         | タスクの ID  |
+| title      | タスクのタイトル |
+| created_at | タスクの作成日時 |
+| updated_at | タスクの更新日時 |
+
+```console
+# モデルの作成
+$ docker-compose run web rails g model Todo title:string
+```
 
 ### 3. モデルの作成
 
