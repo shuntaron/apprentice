@@ -74,6 +74,15 @@ $ docker-compose run web rails g model Todo title:string
 ```
 
 ### 4. ルーティングの設定
+- `/todos` へアクセスした場合、 TODO 一覧ページを表示するようにルーティングを設定する 
+- トップページへアクセスした場合、 TODO 一覧ページを表示するようにルーティングを設定する  
+
+```rb
+Rails.application.routes.draw do
+  root to: "todos#index"
+  get "/todos", to: "todos#index"
+end
+```
 
 ### 5. コントローラーの作成
 
