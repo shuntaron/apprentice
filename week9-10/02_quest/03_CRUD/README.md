@@ -66,6 +66,12 @@ $ docker-compose run web rails db:migrate
 ```
 
 ### 3. モデルの作成
+TODO のデータを扱うためのモデルを作成する
+
+```console
+# モデルの作成（2. で実行済）
+$ docker-compose run web rails g model Todo title:string
+```
 
 ### 4. ルーティングの設定
 
