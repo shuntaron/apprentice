@@ -41,6 +41,12 @@ $ docker-compose up
 
 ### 2. テーブルの作成
 テーブルを作成する  
+テーブルの作成にはマイグレーションを使用する  
+マイグレーションを使用すると以下のようなメリットがある  
+- SQL文を書かずにデータベースの構造を変更できる
+- migration ファイルを共有することで、複数の開発環境でデータベースの構造を簡単に共有できる
+- bin/rails db:migrate:status コマンドで、 migration ファイルの適用状況を確認できる
+- bin/rails db:rollback コマンドで、データベース構造を少し前の状態に戻せる
 
 ### [todos テーブル]
 テーブル名： todos
@@ -54,6 +60,9 @@ $ docker-compose up
 ```console
 # モデルの作成
 $ docker-compose run web rails g model Todo title:string
+
+# マイグレーションの実行
+$ docker-compose run web rails db:migrate
 ```
 
 ### 3. モデルの作成
