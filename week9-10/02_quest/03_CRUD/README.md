@@ -113,6 +113,27 @@ app/assets/stylesheets/style.css
 app/views/todos/new.html.erb
 ```
 
+2. タスクの保存処理を実装する  
+   タスクが保存できたら、TODO 一覧ページにリダイレクトさせる  
+   データベースにタスクが保存されていることを確認する  
+
+```console
+# アプリをバックグラウンド起動
+$ docker-compose up -d
+
+# コンテナの確認
+$ docker ps
+
+# コンテナへ接続
+$ docker exec -it todo-app-web-1 /bin/bash
+
+# rails console へ接続
+$ rails c
+
+# データベースのデータを確認
+> Todo.all
+```
+
 ### 8. TODO 一覧の表示
 
 ### 9. 編集ページの作成
