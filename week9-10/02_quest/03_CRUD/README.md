@@ -92,7 +92,19 @@ TODO 一覧を表示するためのコントローラー及びコントローラ
 $ docker-compose run web rails g controller todos new index edit update destroy
 ```
 
+```console
+# 以下が作成される
+app/controllers/todos_controller.rb
+```
+
 ### 6. ビューの作成
+TODO 一覧ページのビューを作成する  
+
+```console
+# 以下を作成する
+app/views/todos/index.html.erb
+app/assets/stylesheets/style.css
+```
 
 ### 7. TODO 新規作成ページの作成
 
