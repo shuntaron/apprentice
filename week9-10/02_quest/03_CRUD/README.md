@@ -85,6 +85,12 @@ end
 ```
 
 ### 5. コントローラーの作成
+TODO 一覧を表示するためのコントローラー及びコントローラーのアクションを作成する  
+
+```console
+# コントローラーの作成  
+$ docker-compose run web rails g controller todos new index edit update destroy
+```
 
 ### 6. ビューの作成
 
