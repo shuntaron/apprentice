@@ -107,6 +107,11 @@ app/assets/stylesheets/style.css
 ```
 
 ### 7. TODO 新規作成ページの作成
+1. TODO の新規作成ページを作成する  
+```console
+# 以下を作成する
+app/views/todos/new.html.erb
+```
 
 ### 8. TODO 一覧の表示
 
