@@ -12,13 +12,15 @@
     </thead>
     <tbody>
       <!-- ここは後から動的コンテンツに置き換える -->
-      <tr>
-        <td>サンプルタスク</td>
-        <td>
-          <a class="edit" href="#">編集</a>
-          <a class="delete" href="#">削除</a>
-        </td>
-      </tr>
+      <% @todos.each do |todo| %>
+        <tr>
+          <td><%= todo.title %></td>
+          <td>
+            <a class="edit" href="#">編集</a>
+            <a class="delete" href="#">削除</a>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

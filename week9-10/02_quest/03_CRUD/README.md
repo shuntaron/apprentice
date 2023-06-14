@@ -135,6 +135,21 @@ $ rails c
 ```
 
 ### 8. TODO 一覧の表示
+TODO 一覧ページで、保存されている TODO の一覧を表示する  
+その際に、一覧ページの HTML で示した「サンプルタスク」の部分を、保存されている TODO のタイトルに置き換える  
+
+```erb
+<!-- ここは後から動的コンテンツに置き換える -->
+<% @todos.each do |todo| %>
+  <tr>
+    <td><%= todo.title %></td>
+    <td>
+      <a class="edit" href="#">編集</a>
+      <a class="delete" href="#">削除</a>
+    </td>
+  </tr>
+<% end %>
+```
 
 ### 9. 編集ページの作成
 
