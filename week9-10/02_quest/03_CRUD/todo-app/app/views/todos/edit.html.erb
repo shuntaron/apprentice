@@ -1,8 +1,4 @@
 <div class="container">
   <h1>タスクの編集</h1>
-
-  <%= form_with model: @todo do |f| %>
-    <%= f.text_field :title, placeholder: "タスクを入力する" %>
-    <%= f.submit value: "保存する" %>
-  <% end %>
+  <%= render "form", todo: @todo %>
 </div>

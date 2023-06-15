@@ -162,4 +162,24 @@ app/views/todos/edit.html.erb
    タスクが保存できたら、TODO 一覧ページにリダイレクトさせる  
    また、データベースに更新されたタスクが保存されていることを確認する  
 
+3. フォーム部分の HTML はパーシャル化することで、TODO の新規作成ページと共通化する
+
+```erb
+<%# app/views/todos/new.html.erb %>
+<%# app/views/todos/edit.html.erb %>
+<div class="container">
+  <h1>タスクの編集</h1>
+  <%= render "form", todo: @todo %>
+</div>
+
+```
+
+```erb
+<%# app/views/todos/_form.html.erb %>
+<%= form_with model: todo do |f| %>
+  <%= f.text_field :title, placeholder: "タスクを入力する" %>
+  <%= f.submit value: "保存する" %>
+<% end %>
+```
+
 ### 10. 削除機能
