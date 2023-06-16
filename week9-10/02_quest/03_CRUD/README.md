@@ -23,6 +23,10 @@ https://docs.docker.jp/compose/rails.html
 # プロジェクトのビルド
 $ docker-compose run web rails new . --force --database=postgresql
 
+# .envファイルの作成
+POSTGRES_USERNAME="hoge" # 任意のユーザー名
+POSTGRES_PASSWORD="hoge" # 任意のパスワード
+
 # Gemfile に以下追記
 gem "dotenv-rails"
 
@@ -117,6 +121,29 @@ app/views/todos/new.html.erb
    タスクが保存できたら、TODO 一覧ページにリダイレクトさせる  
    データベースにタスクが保存されていることを確認する  
 
+```erb
+<%# app/views/todos/new.html.erb %>
+<div class="container">
+  <h1>タスクの追加</h1>
+  <%= form_with model: @todo do |f| %>
+    <%= f.text_field :title, placeholder: "タスクを入力する" %>
+    <%= f.submit value: "保存する" %>
+  <% end %>
+</div>
+```
+
+```rb
+# app/controllers/todos_controller.rb
+def create
+  @todo = Todo.new(todo_params)
+  if @todo.save
+    redirect_to todos_path
+  else
+    render :new
+  end
+end
+```
+
 ```console
 # アプリをバックグラウンド起動
 $ docker-compose up -d
@@ -162,6 +189,29 @@ app/views/todos/edit.html.erb
    タスクが保存できたら、TODO 一覧ページにリダイレクトさせる  
    また、データベースに更新されたタスクが保存されていることを確認する  
 
+```erb
+<%# app/views/todos/edit.html.erb %>
+<div class="container">
+  <h1>タスクの編集</h1>
+  <%= form_with model: @todo do |f| %>
+    <%= f.text_field :title, placeholder: "タスクを入力する" %>
+    <%= f.submit value: "保存する" %>
+  <% end %>
+</div>
+```
+
+```rb
+# app/controllers/todos_controller.rb
+def update
+  @todo = Todo.find(params[:id])
+  if @todo.update(todo_params)
+    redirect_to todos_path
+  else
+    render :edit
+  end
+end
+```
+
 3. フォーム部分の HTML はパーシャル化することで、TODO の新規作成ページと共通化する
 
 ```erb
@@ -185,3 +235,26 @@ app/views/todos/edit.html.erb
 ### 10. 削除機能
 TODO 一覧ページで、TODO の削除ボタンをクリックすると、TODO を削除できるようにする  
 その際に、「本当に削除していいですか?」と確認ダイアログが表示され、OK をクリックすると TODO が削除され、TODO 一覧ページにリダイレクトする
+
+```rb
+# app/controllers/todos_controller.rb
+def destroy
+  @todo = Todo.find(params[:id])
+  @todo.destroy
+  redirect_to todos_path
+end
+```
+
+```erb
+<%# app/views/todos/index.html.erb %>
+<!-- ここは後から動的コンテンツに置き換える -->
+<% @todos.each do |todo| %>
+  <tr>
+    <td><%= todo.title %></td>
+    <td>
+      <%= link_to "編集", edit_todo_path(todo.id), class: "edit" %>
+      <%= link_to "削除", todo_path(todo.id), class: "delete", data: {turbo_method: :delete, turbo_confirm: "本当に削除していいですか?"} %>
+    </td>
+  </tr>
+<% end %>
+```
