@@ -66,3 +66,10 @@ irb(main):002:0> Todo.where("title like ?", "%1%").to_sql
 ```
 
 ### 5. バリデーション
+1. TODO のタイトルが空の場合は、タスクを追加できないようにバリデーションを設定する
+```rb
+# app/models/todo.rb
+class Todo < ApplicationRecord
+  validates :title, presence: true
+end
+```
