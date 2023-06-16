@@ -40,6 +40,13 @@ irb(main):001:0> Todo.all
 ```
 
 ### 3. 実行される SQL クエリの確認
+全データの取得をする際に実行される SQL クエリを確認する  
+
+
+```irb
+irb(main):001:0> Todo.all.to_sql
+=> "SELECT \"todos\".* FROM \"todos\""
+```
 
 ### 4. 特定のデータの取得
 
