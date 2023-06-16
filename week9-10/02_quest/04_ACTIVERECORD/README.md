@@ -49,5 +49,20 @@ irb(main):001:0> Todo.all.to_sql
 ```
 
 ### 4. 特定のデータの取得
+`Todo` モデルの中から、`title` に 1 を含むデータを取得する  
+また、その際に実行される SQL クエリも確認する  
+
+```irb
+irb(main):001:0> Todo.where("title like ?", "%1%")
+  Todo Load (0.5ms)  SELECT "todos".* FROM "todos" WHERE (title like '%1%')
+=>
+[#<Todo:0x00007f83c4994db0
+  id: 1,
+  title: "hoge1",
+  created_at: Fri, 16 Jun 2023 13:03:37.506262000 UTC +00:00,
+  updated_at: Fri, 16 Jun 2023 13:03:37.506262000 UTC +00:00>]
+irb(main):002:0> Todo.where("title like ?", "%1%").to_sql
+=> "SELECT \"todos\".* FROM \"todos\" WHERE (title like '%1%')"
+```
 
 ### 5. バリデーション
