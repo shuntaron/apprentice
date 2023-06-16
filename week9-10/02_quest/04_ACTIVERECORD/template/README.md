@@ -14,30 +14,6 @@ Active Recordパターンは、データアクセスのロジックを常にオ�
 https://railsguides.jp/active_record_basics.html#active-recordについて
 
 ### 2. 全データの取得
-Rails のコンソールを立ち上げ、 Todo モデルの全データを取得する  
-
-```console
-# Docker コンテナ起動
-$ docker-compose start
-# Rails コンソール起動
-$ docker-compose run web rails console
-```
-
-```irb
-irb(main):001:0> Todo.all
-  Todo Load (0.4ms)  SELECT "todos".* FROM "todos"
-=>
-[#<Todo:0x00007f83c4994db0
-  id: 1,
-  title: "hoge1",
-  created_at: Fri, 16 Jun 2023 13:03:37.506262000 UTC +00:00,
-  updated_at: Fri, 16 Jun 2023 13:03:37.506262000 UTC +00:00>,
- #<Todo:0x00007f83c4953d60
-  id: 2,
-  title: "hoge2",
-  created_at: Fri, 16 Jun 2023 13:05:49.338251000 UTC +00:00,
-  updated_at: Fri, 16 Jun 2023 13:05:49.338251000 UTC +00:00>]
-```
 
 ### 3. 実行される SQL クエリの確認
 
