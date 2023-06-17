@@ -15,6 +15,31 @@ TODO を管理できる「TODO アプリ」を作成する
   - 一覧からタスクを削除することができる
 
 ### 1. プロジェクトの作成
+```console
+$ sed -i -e "s/test-api/easy-api/g" template/Dockerfile template/docker-compose.yml
+$ sed -i -e "s/test_api/easy_api/g" template/config/database.yml 
+$ cp -rp template easy-api
+$ cd easy-api
+
+# アプリケーション作成
+$ docker-compose run web rails new . --api --force --database=postgresql
+# 以下のエラーメッセージは無視
+# Could not find gem '***' in locally installed gems.
+# .envファイルの作成
+POSTGRES_USERNAME="hoge" # 任意のユーザー名
+POSTGRES_PASSWORD="hoge" # 任意のパスワード
+# Gemfile に以下追記
+# gem "dotenv-rails"
+$ sed -i -e "$ s/$/\ngem \"dotenv-rails\"/g" Gemfile
+# 新たな Gemfile が作成されたので、イメージを再ビルド
+$ docker-compose build
+# config/database.yml を修正
+# [database.yml](../template/config/database.yml)
+# データベースを生成
+$ docker-compose run web rails db:create
+# アプリ起動
+$ docker-compose up
+```
 
 ### 2. テーブルの作成
 
