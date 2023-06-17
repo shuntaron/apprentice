@@ -30,3 +30,36 @@ $ docker-compose run web rails db:create
 # アプリ起動
 $ docker-compose up
 ```
+2. 以下のエンドポイントを作成する  
+```text
+GET /get
+```
+
+```rb
+# config/routes.rb
+Rails.application.routes.draw do
+  get "/get", to: "application#get"
+end
+```
+
+```rb
+# app/controllers/application_controller.rb
+class ApplicationController < ActionController::API
+  def get
+    render json: { status: "success" }
+  end
+end
+```
+
+```console
+$ docker-compose run web rails routes -c application
+Prefix Verb URI Pattern    Controller#Action
+   get GET  /get(.:format) application#get
+```
+
+```console
+$ curl -s http://localhost:3000/get | python3 -mjson.tool
+{
+    "status": "success"
+}
+```
