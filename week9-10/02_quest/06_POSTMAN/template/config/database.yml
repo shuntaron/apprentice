@@ -8,9 +8,9 @@ default: &default
 
 development:
   <<: *default
-  database: todo_app_development
+  database: test_api_development
 
 
 test:
   <<: *default
-  database: todo_app_test
+  database: test_api_test
