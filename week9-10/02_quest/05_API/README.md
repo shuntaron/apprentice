@@ -50,3 +50,22 @@ https://datatracker.ietf.org/doc/html/rfc7231#section-4
 | TRACE   | Perform a message loop-back test along the path to the target resource.              |
 
 ### 5. JSON
+JSON は JavaScript Object Notation の略で
+API のリクエストとレスポンスで一般的に用いられるデータ形式のこと  
+以下のデータを JSON の形式で表現する
+
+- データ
+```text
+名前: 山田太郎  
+年齢: 20
+```
+
+- データ(JSON形式)
+```json
+{
+  "名前": "山田太郎",
+  "年齢": 20
+}
+```
+
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON
