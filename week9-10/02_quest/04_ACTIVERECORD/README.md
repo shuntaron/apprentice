@@ -75,3 +75,25 @@ end
 ```
 
 2. タイトルが空のまま保存しようとした場合、  「タスクのタイトルを入力してください」というバリデーションエラーメッセージを TODO の新規作成ページ上に表示する
+
+```erb
+<%# app/views/todos/new.html.erb %>
+<%# app/views/todos/edit.html.erb %>
+<div class="container">
+  <h1>タスクの編集</h1>
+  <%= render "errors", todo: @todo %>
+  <%= render "form", todo: @todo %>
+</div>
+```
+```erb
+<%# app/views/todos/_errors.html.erb %>
+<% if @todo.errors.full_messages.include?("Title can't be blank") %>
+  <p>タスクのタイトルを入力してください</p>
+<% end %>
+```
+```css
+/* app/assets/stylesheets/style.css */
+.field_with_errors {
+  display: contents;
+}
+```

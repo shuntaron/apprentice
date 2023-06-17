@@ -221,7 +221,6 @@ end
   <h1>タスクの編集</h1>
   <%= render "form", todo: @todo %>
 </div>
-
 ```
 
 ```erb
