@@ -63,3 +63,12 @@ $ curl -s http://localhost:3000/get | python3 -mjson.tool
     "status": "success"
 }
 ```
+
+3. Postman でリクエストを送信する  
+HTTP レスポンスは次のようになる  
+
+```json
+{
+  "status": "success"
+}
+```
