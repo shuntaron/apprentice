@@ -10,3 +10,23 @@ API を開発する時には、Postman を使って API の動作確認をする
 3. [Send] をクリックする
 
 ### 2. 新規プロジェクト
+1. ローカルにて API のプロジェクトを作成する  
+https://railsdoc.com/page/rails_new
+```console
+$ docker-compose build --no-cache
+$ docker-compose run --rm web bundle update
+$ docker-compose run web rails new . --api --force --database=postgresql
+# .envファイルの作成
+POSTGRES_USERNAME="hoge" # 任意のユーザー名
+POSTGRES_PASSWORD="hoge" # 任意のパスワード
+# Gemfile に以下追記
+gem "dotenv-rails"
+# 新たな Gemfile が作成されたので、イメージを再ビルド
+$ docker-compose build
+# config/database.yml を修正
+# [database.yml](../template/config/database.yml)
+# データベースを生成
+$ docker-compose run web rails db:create
+# アプリ起動
+$ docker-compose up
+```
