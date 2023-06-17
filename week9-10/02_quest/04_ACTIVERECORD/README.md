@@ -73,3 +73,5 @@ class Todo < ApplicationRecord
   validates :title, presence: true
 end
 ```
+
+2. タイトルが空のまま保存しようとした場合、  「タスクのタイトルを入力してください」というバリデーションエラーメッセージを TODO の新規作成ページ上に表示する

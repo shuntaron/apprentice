@@ -8,7 +8,7 @@ class TodosController < ApplicationController
     if @todo.save
       redirect_to todos_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class TodosController < ApplicationController
     if @todo.update(todo_params)
       redirect_to todos_path
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
