@@ -15,6 +15,7 @@ TODO を管理できる「TODO アプリ」を作成する
   - 一覧からタスクを削除することができる
 
 ### 1. プロジェクトの作成
+### 1.1 アプリケーション作成
 ```console
 $ sed -i -e "s/test-api/easy-api/g" template/Dockerfile template/docker-compose.yml
 $ sed -i -e "s/test_api/easy_api/g" template/config/database.yml 
@@ -39,6 +40,37 @@ $ docker-compose build
 $ docker-compose run web rails db:create
 # アプリ起動
 $ docker-compose up
+```
+
+### 1-2. エンドポイントの作成
+仮のエンドポイント ( GET /get ) を作成する
+```rb
+# config/routes.rb
+Rails.application.routes.draw do
+  get "/get", to: "application#get"
+end
+```
+
+```rb
+# app/controllers/application_controller.rb
+class ApplicationController < ActionController::API
+  def get
+    render json: { status: "success" }
+  end
+end
+```
+
+```console
+$ docker-compose run web rails routes -c application
+Prefix Verb URI Pattern    Controller#Action
+   get GET  /get(.:format) application#get
+```
+
+```console
+$ curl -s http://localhost:3000/get | python3 -mjson.tool
+{
+    "status": "success"
+}
 ```
 
 ### 2. テーブルの作成
