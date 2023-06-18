@@ -141,7 +141,7 @@ class TodosController < ApplicationController
   def create
     todo = Todo.new(todo_params)
     if todo.save
-      render json: { todo: {id: todo.id, title: todo.title} }
+      render json: { todo: todo }, except: [:created_at, :updated_at]
     else
       render json: { error: todo.errors.full_messages }
     end
@@ -179,6 +179,67 @@ $ curl -H "Content-Type: application/json" -X POST -d '
 ```
 
 ### 4. TODO の一覧表示
+TODO の一覧を表示するためのエンドポイントを作成する
+### エンドポイント
+  GET /todos
+
+### HTTP レスポンス
+```js
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "買い物に行く"
+    },
+    {
+      "id": 2,
+      "title": "掃除をする"
+    }
+  ]
+}
+```
+
+```rb
+# config/routes.rb
+Rails.application.routes.draw do
+  get "/get", to: "application#get"
+  post "/todos", to: "todos#create"
+  get "/todos", to: "todos#index"
+end
+```
+
+```rb
+# app/controllers/todos_controller.rb
+class TodosController < ApplicationController
+  def index
+    todos = Todo.all
+    render json: { todos: todos }, except: [:created_at, :updated_at]
+  end
+end
+```
+
+```console
+$ rails routes -c todos
+Prefix Verb URI Pattern      Controller#Action
+ todos POST /todos(.:format) todos#create
+       GET  /todos(.:format) todos#index
+```
+
+```console
+$ curl -s http://localhost:3000/todos
+{
+  "todos":[
+    {
+      "id":1,
+      "title":"買い物に行く"
+    },
+    {
+      "id":2,
+      "title":"掃除をする"
+    }
+  ]
+}
+```
 
 ### 5. TODO の更新
 

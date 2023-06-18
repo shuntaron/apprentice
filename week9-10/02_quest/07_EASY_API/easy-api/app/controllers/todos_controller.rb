@@ -2,10 +2,15 @@ class TodosController < ApplicationController
   def create
     todo = Todo.new(todo_params)
     if todo.save
-      render json: { todo: {id: todo.id, title: todo.title} }
+      render json: { todo: todo }, except: [:created_at, :updated_at]
     else
       render json: { error: todo.errors.full_messages }
     end
+  end
+  
+  def index
+    todos = Todo.all
+    render json: { todos: todos }, except: [:created_at, :updated_at]
   end
   
   private
