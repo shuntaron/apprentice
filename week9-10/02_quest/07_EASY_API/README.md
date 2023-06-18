@@ -74,6 +74,30 @@ $ curl -s http://localhost:3000/get | python3 -mjson.tool
 ```
 
 ### 2. テーブルの作成
+TODO のデータを保存するためのテーブルを作成する  
+テーブル名： todos  
+カラム：
+- id: タスクの ID
+- title: タスクのタイトル
+- created_at: タスクの作成日時
+- updated_at: タスクの更新日時
+
+```console
+$ docker exec -it easy-api-web-1 /bin/bash
+$ rails g model Todo title:string
+$ rails db:migrate
+$ rails db
+easy_api_development-# \d todos
+                                          Table "public.todos"
+   Column   |              Type              | Collation | Nullable |              Default
+------------+--------------------------------+-----------+----------+-----------------------------------
+ id         | bigint                         |           | not null | nextval('todos_id_seq'::regclass)
+ title      | character varying              |           |          |
+ created_at | timestamp(6) without time zone |           | not null |
+ updated_at | timestamp(6) without time zone |           | not null |
+Indexes:
+    "todos_pkey" PRIMARY KEY, btree (id)
+```
 
 ### 3. TODO の追加
 
