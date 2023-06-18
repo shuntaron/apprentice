@@ -100,6 +100,83 @@ Indexes:
 ```
 
 ### 3. TODO の追加
+TODO を追加するためのエンドポイントを作成する
+### エンドポイント
+  POST /todos
+### HTTP リクエストボディ
+```js
+{
+  "todo": {
+    "title": "買い物に行く"
+  }
+}
+```
+
+### HTTP レスポンス
+```js
+{
+  "todo": {
+    "id": 1,
+    "title": "買い物に行く"
+  }
+}
+```
+
+```console
+$ docker exec -it easy-api-web-1 /bin/bash
+$ rails g controller todos
+```
+
+```rb
+# config/routes.rb
+Rails.application.routes.draw do
+  get "/get", to: "application#get"
+  post "/todos", to: "todos#create"
+end
+```
+
+```rb
+# app/controllers/todos_controller.rb
+class TodosController < ApplicationController
+  def create
+    todo = Todo.new(todo_params)
+    if todo.save
+      render json: { todo: {id: todo.id, title: todo.title} }
+    else
+      render json: { error: todo.errors.full_messages }
+    end
+  end
+  
+  private
+  
+  def todo_params
+    params.require(:todo).permit(:title)
+  end
+  
+end
+```
+
+```console
+$ rails routes -c todos
+Prefix Verb URI Pattern      Controller#Action
+ todos POST /todos(.:format) todos#create
+```
+
+```console
+$ curl -H "Content-Type: application/json" -X POST -d '
+{
+  "todo": {
+    "title": "買い物に行く"
+  }
+}
+' http://localhost:3000/todos
+{
+  "todo": {
+    "id":1,
+    "title":"買い物に行く"
+  }
+}
+```
 
 ### 4. TODO の一覧表示
 
