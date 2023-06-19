@@ -75,6 +75,7 @@ $ curl -s http://localhost:3000/get | python3 -mjson.tool
 
 ### 2. テーブルの作成
 TODO のデータを保存するためのテーブルを作成する  
+
 テーブル名： todos  
 カラム：
 - id: タスクの ID
@@ -101,8 +102,10 @@ Indexes:
 
 ### 3. TODO の追加
 TODO を追加するためのエンドポイントを作成する
+
 ### エンドポイント
-  POST /todos
+POST /todos
+
 ### HTTP リクエストボディ
 ```js
 {
@@ -170,6 +173,7 @@ $ curl -H "Content-Type: application/json" -X POST -d '
   }
 }
 ' http://localhost:3000/todos
+
 {
   "todo": {
     "id":1,
@@ -180,8 +184,9 @@ $ curl -H "Content-Type: application/json" -X POST -d '
 
 ### 4. TODO の一覧表示
 TODO の一覧を表示するためのエンドポイントを作成する
+
 ### エンドポイント
-  GET /todos
+GET /todos
 
 ### HTTP レスポンス
 ```js
@@ -242,5 +247,81 @@ $ curl -s http://localhost:3000/todos
 ```
 
 ### 5. TODO の更新
+TODO を更新するためのエンドポイントを作成する
+### エンドポイント
+PUT /todos/:id
+
+### HTTP リクエストボディ
+```js
+{
+  "todo": {
+    "title": "本を買う"
+  }
+}
+```
+
+### HTTP レスポンス
+```js
+{
+  "todo": {
+    "id": 1,
+    "title": "本を買う"
+  }
+}
+```
+
+```console
+$ docker exec -it easy-api-web-1 /bin/bash
+$ rails g controller todos
+```
+
+```rb
+# config/routes.rb
+Rails.application.routes.draw do
+  get "/get", to: "application#get"
+  post "/todos", to: "todos#create"
+  get "/todos", to: "todos#index"
+  put "/todos/:id", to: "todos#update"
+end
+
+```
+
+```rb
+# app/controllers/todos_controller.rb
+class TodosController < ApplicationController
+  def update
+    todo = Todo.find(params[:id])
+    if todo.update(todo_params)
+      render json: { todo: todo }, except: [:created_at, :updated_at]
+    else
+      render json: { error: todo.errors.full_messages }
+    end
+  end
+  
+  private
+  
+  def todo_params
+    params.require(:todo).permit(:title)
+  end
+  
+end
+```
+
+```console
+curl -H "Content-Type: application/json" -X PUT -d '
+{
+  "todo": {
+    "title": "本を買う"
+  }
+}
+' http://localhost:3000/todos/1
+
+{
+  "todo":{
+    "id":1,
+    "title":"本を買う"
+  }
+}
+```
 
 ### 6. TODO の削除

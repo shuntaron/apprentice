@@ -13,6 +13,15 @@ class TodosController < ApplicationController
     render json: { todos: todos }, except: [:created_at, :updated_at]
   end
   
+  def update
+    todo = Todo.find(params[:id])
+    if todo.update(todo_params)
+      render json: { todo: todo }, except: [:created_at, :updated_at]
+    else
+      render json: { error: todo.errors.full_messages }
+    end
+  end
+  
   private
   
   def todo_params
