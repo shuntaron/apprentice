@@ -76,8 +76,10 @@ $ curl -s http://localhost:3000/get | python3 -mjson.tool
 ### 2. テーブルの作成
 TODO のデータを保存するためのテーブルを作成する  
 
-テーブル名： todos  
-カラム：
+### テーブル名:
+- todos  
+
+### カラム:
 - id: タスクの ID
 - title: タスクのタイトル
 - created_at: タスクの作成日時
@@ -104,7 +106,9 @@ Indexes:
 TODO を追加するためのエンドポイントを作成する
 
 ### エンドポイント
+```text
 POST /todos
+```
 
 ### HTTP リクエストボディ
 ```js
@@ -133,7 +137,7 @@ $ rails g controller todos
 ```rb
 # config/routes.rb
 Rails.application.routes.draw do
-  get "/get", to: "application#get"
+  get  "/get",   to: "application#get"
   post "/todos", to: "todos#create"
 end
 ```
@@ -186,7 +190,9 @@ $ curl -H "Content-Type: application/json" -X POST -d '
 TODO の一覧を表示するためのエンドポイントを作成する
 
 ### エンドポイント
+```text
 GET /todos
+```
 
 ### HTTP レスポンス
 ```js
@@ -207,9 +213,9 @@ GET /todos
 ```rb
 # config/routes.rb
 Rails.application.routes.draw do
-  get "/get", to: "application#get"
+  get  "/get",   to: "application#get"
   post "/todos", to: "todos#create"
-  get "/todos", to: "todos#index"
+  get  "/todos", to: "todos#index"
 end
 ```
 
@@ -248,8 +254,11 @@ $ curl -s http://localhost:3000/todos
 
 ### 5. TODO の更新
 TODO を更新するためのエンドポイントを作成する
+
 ### エンドポイント
+```text
 PUT /todos/:id
+```
 
 ### HTTP リクエストボディ
 ```js
@@ -278,10 +287,10 @@ $ rails g controller todos
 ```rb
 # config/routes.rb
 Rails.application.routes.draw do
-  get "/get", to: "application#get"
-  post "/todos", to: "todos#create"
-  get "/todos", to: "todos#index"
-  put "/todos/:id", to: "todos#update"
+  get  "/get",       to: "application#get"
+  post "/todos",     to: "todos#create"
+  get  "/todos",     to: "todos#index"
+  put  "/todos/:id", to: "todos#update"
 end
 
 ```
@@ -325,3 +334,43 @@ curl -H "Content-Type: application/json" -X PUT -d '
 ```
 
 ### 6. TODO の削除
+TODO を削除するためのエンドポイントを作成
+
+### エンドポイント
+```text
+DELETE /todos/:id
+```
+
+### HTTP レスポンス
+```text
+HTTP ステータスコード: 204  
+HTTP レスポンスボディ: 空
+```
+
+```rb
+# config/routes.rb
+Rails.application.routes.draw do
+  get    "/get",       to: "application#get"
+  post   "/todos",     to: "todos#create"
+  get    "/todos",     to: "todos#index"
+  put    "/todos/:id", to: "todos#update"
+  delete "/todos/:id", to: "todos#destroy"
+end
+```
+
+https://railsguides.jp/layouts_and_rendering.html#statusオプション
+```rb
+# app/controllers/todos_controller.rb
+class TodosController < ApplicationController
+  def destroy
+    todo = Todo.find(params[:id])
+    todo.destroy
+    render status: :no_content
+  end
+end
+```
+
+```console
+curl -H "Content-Type: application/json" -X DELETE http://localhost:3000/todos/1 -o /dev/null -w '%{http_code}\n' -s
+204
+```
