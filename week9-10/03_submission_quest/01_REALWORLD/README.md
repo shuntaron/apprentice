@@ -17,5 +17,32 @@ RealWorld　の API のうち、次のエンドポイントを実装する
 
 1. プロジェクトの作成
 ```console
-rails new realworld --api
+$ rails new realworld --api
+```
+
+2. テーブルの作成
+```console
+$ rails g model Article title:string description:string body:text
+$ rails db:migrate
+```
+
+3. Create Article の実装
+```rb
+Rails.application.routes.draw do
+  namespace :api do
+    resources :articles, only: [:index, :show, :create, :update, :destroy]
+  end
+end
+```
+
+```console
+$ rails g controller api/articles
+# -> アクションの設定
+$ curl -H "Content-Type: application/json" -X POST -d \
+'{
+  "title": "How to train your dragon",
+  "description": "Ever wonder how?",
+  "body": "You have to believe"
+}' \
+http://localhost:3000/api/articles
 ```
