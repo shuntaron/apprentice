@@ -26,7 +26,7 @@ $ rails g model Article title:string description:string body:text
 $ rails db:migrate
 ```
 
-3. Create Article の実装
+3. [Create Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#create-article) の実装
 ```rb
 Rails.application.routes.draw do
   namespace :api do
@@ -38,11 +38,33 @@ end
 ```console
 $ rails g controller api/articles
 # -> アクションの設定
-$ curl -H "Content-Type: application/json" -X POST -d \
-'{
+$ curl -H "Content-Type: application/json" -X POST -d '
+{
   "title": "How to train your dragon",
   "description": "Ever wonder how?",
   "body": "You have to believe"
-}' \
-http://localhost:3000/api/articles
+}
+' http://localhost:3000/api/articles
+```
+```rb
+def create
+  article = Article.new(article_params)
+  if article.save
+    render json: { status: 'SUCCESS', data: article }
+  else
+    render json: { status: 'ERROR', data: article.errors }
+  end
+end
+```
+
+4. [Get Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#get-article) の実装
+```rb
+def show
+  article = Article.find(params[:id])
+  render json: { status: 'SUCCESS', data: article }
+end
+```
+
+```console
+$ curl -s http://localhost:3000/api/articles/1 | python -mjson.tool
 ```

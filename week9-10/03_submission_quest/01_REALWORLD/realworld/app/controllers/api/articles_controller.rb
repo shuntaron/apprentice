@@ -1,8 +1,12 @@
 class Api::ArticlesController < ApplicationController
   def index
+    articles = Article.order(created_at: :desc)
+    render json: { status: 'SUCCESS', data: articles }
   end
   
   def show
+    article = Article.find(params[:id])
+    render json: { status: 'SUCCESS', data: article }
   end
   
   def create
