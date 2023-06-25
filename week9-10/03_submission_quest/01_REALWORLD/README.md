@@ -79,11 +79,11 @@ $ curl -s http://localhost:3000/api/articles/how-to-train-your-dragon | python3 
 ```rb
 # app/controllers/api/articles_controller.rb
 def update
-  article = Article.find(params[:id])
+  article = Article.find_by(slug: params[:slug])
   if article.update(article_params)
-    render json: { status: 'SUCCESS', data: article }
+    render json: { article: article }, except: [:id, :created_at, :updated_at]
   else
-    render json: { status: 'ERROR', data: article.errors }
+    render json: { errors: article.errors.full_messages }
   end
 end
 ```
@@ -95,7 +95,7 @@ $ curl -H "Content-Type: application/json" -X PUT -d '
     "title": "Did you train your dragon?"
   }
 }
-' http://localhost:3000/api/articles/1
+' http://localhost:3000/api/articles/how-to-train-your-dragon
 ```
 
 ### 6. [Delete Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#delete-article) の実装

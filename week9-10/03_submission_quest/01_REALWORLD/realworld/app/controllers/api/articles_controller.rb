@@ -19,11 +19,11 @@ class Api::ArticlesController < ApplicationController
   end
   
   def update
-    article = Article.find(params[:id])
+    article = Article.find_by(slug: params[:slug])
     if article.update(article_params)
-      render json: { status: 'SUCCESS', data: article }
+      render json: { article: article }, except: [:id, :created_at, :updated_at]
     else
-      render json: { status: 'ERROR', data: article.errors }
+      render json: { errors: article.errors.full_messages }
     end
   end
   
@@ -39,6 +39,6 @@ class Api::ArticlesController < ApplicationController
   end
   
   def title_to_slug
-    params[:title].parameterize
+    params.require(:article).permit(:title)[:title].parameterize
   end
 end
