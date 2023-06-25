@@ -1,7 +1,7 @@
 class Api::ArticlesController < ApplicationController
   def index
     articles = Article.order(created_at: :desc)
-    render json: { status: 'SUCCESS', data: articles }
+    render json: { articles: articles }, except: [:id, :created_at, :updated_at]
   end
   
   def show
@@ -28,9 +28,9 @@ class Api::ArticlesController < ApplicationController
   end
   
   def destroy
-    article = Article.find(params[:id])
+    article = Article.find_by(slug: params[:slug])
     article.destroy
-    render json: { status: 'SUCCESS', data: article }
+    render json: { article: article }, except: [:id, :created_at, :updated_at]
   end
   
   private

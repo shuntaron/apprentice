@@ -103,14 +103,14 @@ $ curl -H "Content-Type: application/json" -X PUT -d '
 ```rb
 # app/controllers/api/articles_controller.rb
 def destroy
-  article = Article.find(params[:id])
+  article = Article.find_by(slug: params[:slug])
   article.destroy
-  render json: { status: 'SUCCESS', data: article }
+  render json: { article: article }, except: [:id, :created_at, :updated_at]
 end
 ```
 
 ```console
-$ curl -H "Content-Type: application/json" -X DELETE http://localhost:3000/api/articles/1
+$ curl -H "Content-Type: application/json" -X DELETE http://localhost:3000/api/articles/did-you-train-your-dragon?
 ```
 
 </details>
