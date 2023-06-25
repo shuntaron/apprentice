@@ -35,6 +35,10 @@ class Api::ArticlesController < ApplicationController
   
   private
   def article_params
-    params.require(:article).permit(:title, :description, :body)
+    params.require(:article).permit(:title, :description, :body).merge(slug: title_to_slug)
+  end
+  
+  def title_to_slug
+    params[:title].parameterize
   end
 end
