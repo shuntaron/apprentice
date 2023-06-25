@@ -19,6 +19,12 @@ class Api::ArticlesController < ApplicationController
   end
   
   def update
+    article = Article.find(params[:id])
+    if article.update(article_params)
+      render json: { status: 'SUCCESS', data: article }
+    else
+      render json: { status: 'ERROR', data: article.errors }
+    end
   end
   
   def destroy

@@ -28,6 +28,7 @@ $ rails db:migrate
 
 3. [Create Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#create-article) の実装
 ```rb
+# app/config/routes.rb
 Rails.application.routes.draw do
   namespace :api do
     resources :articles, only: [:index, :show, :create, :update, :destroy]
@@ -46,7 +47,9 @@ $ curl -H "Content-Type: application/json" -X POST -d '
 }
 ' http://localhost:3000/api/articles
 ```
+
 ```rb
+# app/controllers/api/articles_controller.rb
 def create
   article = Article.new(article_params)
   if article.save
@@ -59,6 +62,7 @@ end
 
 4. [Get Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#get-article) の実装
 ```rb
+# app/controllers/api/articles_controller.rb
 def show
   article = Article.find(params[:id])
   render json: { status: 'SUCCESS', data: article }
@@ -67,4 +71,28 @@ end
 
 ```console
 $ curl -s http://localhost:3000/api/articles/1 | python -mjson.tool
+```
+
+5. [Update Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#update-article) の実装
+
+```rb
+# app/controllers/api/articles_controller.rb
+def update
+  article = Article.find(params[:id])
+  if article.update(article_params)
+    render json: { status: 'SUCCESS', data: article }
+  else
+    render json: { status: 'ERROR', data: article.errors }
+  end
+end
+```
+
+```console
+$ curl -H "Content-Type: application/json" -X PUT -d '
+{
+  "article": {
+    "title": "Did you train your dragon?"
+  }
+}
+' http://localhost:3000/api/articles/1
 ```
