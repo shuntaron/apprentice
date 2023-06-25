@@ -7,10 +7,9 @@
 ### ステップ1
 <details open>
 
-ステップ1 では RealWorld の API の仕様を部分的に満たした API を作成する  
-認証機能のない簡易バージョンの作成を行う  
-RealWorld　の API のうち、次のエンドポイントを実装する  
-なお、Article に関わる要素のうち、認証機能及び著者、タグ、お気に入り(`favorite`) は実装しない  
+RealWorld の API の仕様を部分的に満たした API を作成する（認証機能のない簡易バージョンの作成を行う）  
+RealWorld の API のうち、次のエンドポイントを実装する  
+Article に関わる要素のうち、認証機能及び著者、タグ、お気に入り(`favorite`) は実装しない  
 
 - [Create Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#create-article)
 - [Get Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#get-article)
