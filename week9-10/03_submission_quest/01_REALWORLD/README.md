@@ -17,18 +17,18 @@ RealWorld　の API のうち、次のエンドポイントを実装する
 - [Update Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#update-article)
 - [Delete Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#delete-article)
 
-1. プロジェクトの作成
+### 1. プロジェクトの作成
 ```console
 $ rails new realworld --api
 ```
 
-2. テーブルの作成
+### 2. テーブルの作成
 ```console
 $ rails g model Article title:string description:string body:text
 $ rails db:migrate
 ```
 
-3. [Create Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#create-article) の実装
+### 3. [Create Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#create-article) の実装
 ```rb
 # app/config/routes.rb
 Rails.application.routes.draw do
@@ -62,7 +62,7 @@ def create
 end
 ```
 
-4. [Get Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#get-article) の実装
+### 4. [Get Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#get-article) の実装
 ```rb
 # app/controllers/api/articles_controller.rb
 def show
@@ -75,7 +75,7 @@ end
 $ curl -s http://localhost:3000/api/articles/1 | python -mjson.tool
 ```
 
-5. [Update Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#update-article) の実装
+### 5. [Update Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#update-article) の実装
 
 ```rb
 # app/controllers/api/articles_controller.rb
@@ -99,7 +99,7 @@ $ curl -H "Content-Type: application/json" -X PUT -d '
 ' http://localhost:3000/api/articles/1
 ```
 
-6. [Delete Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#delete-article) の実装
+### 6. [Delete Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#delete-article) の実装
 
 ```rb
 # app/controllers/api/articles_controller.rb
