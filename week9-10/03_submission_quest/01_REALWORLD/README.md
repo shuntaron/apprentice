@@ -5,6 +5,7 @@
 [RealWorld のドキュメント](https://realworld-docs.netlify.app/docs/intro) に目を通した上で、[RealWorld の バックエンドの API](https://realworld-docs.netlify.app/docs/specs/backend-specs/introduction) の仕様を満たす Rails API を作成する
 
 ### ステップ1
+<details open>
 ステップ1 では RealWorld の API の仕様を部分的に満たした API を作成する  
 認証機能のない簡易バージョンの作成を行う  
 RealWorld　の API のうち、次のエンドポイントを実装する  
@@ -96,3 +97,19 @@ $ curl -H "Content-Type: application/json" -X PUT -d '
 }
 ' http://localhost:3000/api/articles/1
 ```
+
+6. [Delete Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#delete-article) の実装
+
+```rb
+# app/controllers/api/articles_controller.rb
+def destroy
+  article = Article.find(params[:id])
+  article.destroy
+  render json: { status: 'SUCCESS', data: article }
+end
+```
+
+```console
+$ curl -H "Content-Type: application/json" -X DELETE -d http://localhost:3000/api/articles/1
+```
+</details>
