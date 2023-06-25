@@ -65,13 +65,13 @@ end
 ```rb
 # app/controllers/api/articles_controller.rb
 def show
-  article = Article.find(params[:id])
-  render json: { status: 'SUCCESS', data: article }
+  article = Article.find_by(slug: params[:slug])
+  render json: { article: article }, except: [:id]
 end
 ```
 
 ```console
-$ curl -s http://localhost:3000/api/articles/1 | python3 -mjson.tool
+$ curl -s http://localhost:3000/api/articles/how-to-train-your-dragon | python3 -mjson.tool
 ```
 
 ### 5. [Update Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#update-article) の実装

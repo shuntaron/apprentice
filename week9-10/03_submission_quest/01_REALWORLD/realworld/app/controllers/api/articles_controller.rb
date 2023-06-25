@@ -5,8 +5,8 @@ class Api::ArticlesController < ApplicationController
   end
   
   def show
-    article = Article.find(params[:id])
-    render json: { status: 'SUCCESS', data: article }
+    article = Article.find_by(slug: params[:slug])
+    render json: { article: article }, except: [:id]
   end
   
   def create
