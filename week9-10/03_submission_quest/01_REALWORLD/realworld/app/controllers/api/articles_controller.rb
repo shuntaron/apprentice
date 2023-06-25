@@ -12,9 +12,9 @@ class Api::ArticlesController < ApplicationController
   def create
     article = Article.new(article_params)
     if article.save
-      render json: { status: 'SUCCESS', data: article }
+      render json: { article: article }, except: [:id, :created_at, :updated_at]
     else
-      render json: { status: 'ERROR', data: article.errors }
+      render json: { errors: article.errors.full_messages }
     end
   end
   
