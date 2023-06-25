@@ -6,6 +6,7 @@
 
 ### ステップ1
 <details open>
+
 ステップ1 では RealWorld の API の仕様を部分的に満たした API を作成する  
 認証機能のない簡易バージョンの作成を行う  
 RealWorld　の API のうち、次のエンドポイントを実装する  
@@ -110,6 +111,7 @@ end
 ```
 
 ```console
-$ curl -H "Content-Type: application/json" -X DELETE -d http://localhost:3000/api/articles/1
+$ curl -H "Content-Type: application/json" -X DELETE http://localhost:3000/api/articles/1
 ```
+
 </details>
