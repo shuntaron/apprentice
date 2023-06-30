@@ -33,3 +33,5 @@ Cookie はユーザーが無効化することができるが、セッション�
 5. セッション ID からログイン中のユーザーを探す
 
 ### 3. Cookie の確認
+www.google.com にログインした状態でアクセスし、Cookie を確認する  
+Chrome の場合、F12 で開発者ツールを開き、Application > Storage タブから Cookie を確認することができる
