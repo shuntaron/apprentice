@@ -1,6 +1,10 @@
 ## VPC 構築
+AWS の公式ドキュメントを参考に、 VPC を構築する
+- [Amazon VPC の使用を開始する](https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/vpc-getting-started.html)
+- [チュートリアル: DB インスタンスで使用する VPC を作成する](https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateVPC.html)
 
 ### 1. VPC の作成
+VPC を新規作成する
 
 ### 2. サブネットの作成
 
