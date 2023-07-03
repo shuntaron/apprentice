@@ -11,3 +11,4 @@ EC2 インスタンスを新規に作成する
 Amazon マシンイメージ (AMI) は、[WordPress ブログをホストする](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/tuts-wordpress.html) に記載されているバージョンの Amazon Linux を使用する
 
 ### 3. EC2 インスタンスに接続
+EC2 インスタンスに接続する
