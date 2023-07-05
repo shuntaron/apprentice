@@ -30,3 +30,4 @@ define( 'DB_HOST', 'RDSのエンドポイント' );
 ```
 
 ### 2. WordPress へアクセス
+- WordPress へアクセスし、正しく動作していることを確認する
