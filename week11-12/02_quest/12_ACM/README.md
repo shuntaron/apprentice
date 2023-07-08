@@ -38,5 +38,8 @@ SSL 化には色々な方法があるが、今回は ACM と Elastic Load Balanc
 - 完了したら、ロードバランサーの DNS 名に HTTPS 通信して、WordPress のページが表示されることを確認する
 
 ### 6. 独自ドメインを HTTPS 通信に対応
+- 独自ドメインを HTTPS 通信に対応させる
+- Route 53 の A レコードの値を、ロードバランサーの DNS 名に変更する
+- 完了したら、独自ドメインに HTTPS 通信して、WordPress のページが表示されることを確認する
 
 ### 7. HTTP 通信を HTTPS 通信にリダイレクト
