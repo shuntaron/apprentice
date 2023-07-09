@@ -29,7 +29,7 @@ $ rails db:migrate
 
 ### 3. [Create Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#create-article) の実装
 ```rb
-# app/config/routes.rb
+# config/routes.rb
 Rails.application.routes.draw do
   namespace :api do
     resources :articles, only: [:index, :show, :create, :update, :destroy]
@@ -54,9 +54,9 @@ $ curl -H "Content-Type: application/json" -X POST -d '
 def create
   article = Article.new(article_params)
   if article.save
-    render json: { status: 'SUCCESS', data: article }
+    render json: { article: article }, except: [:id, :created_at, :updated_at]
   else
-    render json: { status: 'ERROR', data: article.errors }
+    render json: { errors: article.errors.full_messages }
   end
 end
 ```
@@ -65,13 +65,13 @@ end
 ```rb
 # app/controllers/api/articles_controller.rb
 def show
-  article = Article.find(params[:id])
-  render json: { status: 'SUCCESS', data: article }
+  article = Article.find_by(slug: params[:slug])
+  render json: { article: article }, except: [:id]
 end
 ```
 
 ```console
-$ curl -s http://localhost:3000/api/articles/1 | python -mjson.tool
+$ curl -s http://localhost:3000/api/articles/how-to-train-your-dragon | python3 -mjson.tool
 ```
 
 ### 5. [Update Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#update-article) の実装
@@ -79,11 +79,11 @@ $ curl -s http://localhost:3000/api/articles/1 | python -mjson.tool
 ```rb
 # app/controllers/api/articles_controller.rb
 def update
-  article = Article.find(params[:id])
+  article = Article.find_by(slug: params[:slug])
   if article.update(article_params)
-    render json: { status: 'SUCCESS', data: article }
+    render json: { article: article }, except: [:id, :created_at, :updated_at]
   else
-    render json: { status: 'ERROR', data: article.errors }
+    render json: { errors: article.errors.full_messages }
   end
 end
 ```
@@ -95,7 +95,7 @@ $ curl -H "Content-Type: application/json" -X PUT -d '
     "title": "Did you train your dragon?"
   }
 }
-' http://localhost:3000/api/articles/1
+' http://localhost:3000/api/articles/how-to-train-your-dragon
 ```
 
 ### 6. [Delete Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#delete-article) の実装
@@ -103,14 +103,14 @@ $ curl -H "Content-Type: application/json" -X PUT -d '
 ```rb
 # app/controllers/api/articles_controller.rb
 def destroy
-  article = Article.find(params[:id])
+  article = Article.find_by(slug: params[:slug])
   article.destroy
-  render json: { status: 'SUCCESS', data: article }
+  render json: { article: article }, except: [:id, :created_at, :updated_at]
 end
 ```
 
 ```console
-$ curl -H "Content-Type: application/json" -X DELETE http://localhost:3000/api/articles/1
+$ curl -H "Content-Type: application/json" -X DELETE http://localhost:3000/api/articles/did-you-train-your-dragon?
 ```
 
 </details>
