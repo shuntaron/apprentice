@@ -16,3 +16,5 @@ RealWorld のバックエンドの API を AWS 上にデプロイする
 
 ### 参考
 [AWS のアーキテクチャ図を描きたい ! でもどうすれば良いの ?](https://aws.amazon.com/jp/builders-flash/202204/way-to-draw-architecture/?awsf.filter-name=*all)
+
+![Diagram](Diagram.drawio.png)
