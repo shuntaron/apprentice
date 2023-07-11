@@ -12,3 +12,7 @@ RealWorld のバックエンドの API を AWS 上にデプロイする
 - SSL 化 (HTTPS 化) すること
 
 ### ステップ2
+インフラ構成図 (AWS のアーキテクチャ図) を作成する
+
+### 参考
+[AWS のアーキテクチャ図を描きたい ! でもどうすれば良いの ?](https://aws.amazon.com/jp/builders-flash/202204/way-to-draw-architecture/?awsf.filter-name=*all)
